@@ -1,0 +1,45 @@
+@import "../../style/_vars";
+
+.banner {
+	height: 4.5em;
+	background-color: $BANNER_BACKGROUND;
+	color: $SECONDARY_COLOR;
+	.banner-left {
+		margin-left: 10%;
+		float: left;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.banner-right {
+		margin-right: 10%;
+		margin-top: 0.6em;
+		float: right;
+		height: 3.9em;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+
+		.spacer {
+			padding: 0 1.5em;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+			margin-bottom: 0.35em;
+		}
+	}
+
+	.link {
+		font-weight: 500;
+		font-size: 1.2em;
+	}
+}

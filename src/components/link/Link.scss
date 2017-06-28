@@ -1,0 +1,11 @@
+@import "../../style/_vars";
+
+.link {
+  color: $SECONDARY_COLOR;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

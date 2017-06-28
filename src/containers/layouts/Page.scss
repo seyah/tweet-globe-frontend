@@ -1,0 +1,15 @@
+@import "../../style/_vars";
+
+.page {
+	height: 100%;
+	.content {
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+		align-items: center;
+		margin: $HEADER_SIZE 9em $FOOTER_SIZE 9em;
+		background-color: #ffffff;
+	}
+}

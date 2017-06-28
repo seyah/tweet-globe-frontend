@@ -1,0 +1,2 @@
+export const GET_SAMPLE_CONTENTS = 'GET_SAMPLE_CONTENTS';
+export const FETCH_FAILED = 'FETCH_FAILED';

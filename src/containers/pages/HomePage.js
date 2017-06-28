@@ -7,7 +7,7 @@ class HomePage extends Component {
         return (
             <BorderPage>
                 <div className="content">
-                    testtttttttttttttt
+
                 </div>
             </BorderPage>
         );

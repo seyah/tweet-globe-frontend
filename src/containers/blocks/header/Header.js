@@ -12,7 +12,7 @@ class Header extends Component {
 			<div className="header">
 				<Banner logo={<Logo link="/" image={BannerImage} />}>
 					<div className="banner-link">
-						<Link link="/contact" text="Contact" />
+						<Link icon={<i className="fa fa-user" />} link="/contact" text=" My Account" />
 					</div>
 				</Banner>
 			</div>

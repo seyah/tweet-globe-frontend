@@ -1,18 +1,27 @@
 @import "./_vars";
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('../../public/css/font-awesome.min.css');
 
-html {
-  font-size: $BASE_FONT_SIZE;
-}
-
-body {
+html, body {
   margin: 0;
   padding: 0;
   background-color: #ffffff;
+  font-size: $BASE_FONT_SIZE;
+  //height: 100vh;
+  //width: 100vw;
 
   * {
     font-family: 'Open Sans', sans-serif;
     letter-spacing: 0.45pt;
+  }
+
+  .container {
+    width: 100%;
+    height: 100%;
+    #app {
+      width: 100%;
+      height: 100%;
+    }
   }
 }

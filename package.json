@@ -1,5 +1,5 @@
 {
-  "name": "simple-react-boilerplate",
+  "name": "tweet-globe-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -57,7 +57,12 @@
   },
   "xo": {
     "rules": {
-      "unicorn/filename-case": ["error", { "case": "pascalCase" }]
+      "unicorn/filename-case": [
+        "error",
+        {
+          "case": "pascalCase"
+        }
+      ]
     }
   }
 }

@@ -1,22 +1,22 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-class Title extends Component {
+class Subtitle extends Component {
 	render() {
 		const {children} = this.props;
 
 		return (
-			<h1 className="title text-primary bold">{children}</h1>
+			<h2 className="subtitle text-primary bold">{children}</h2>
 		);
 	}
 }
 
-Title.defaultProps = {
+Subtitle.defaultProps = {
 	children: null
 };
 
-Title.propTypes = {
+Subtitle.propTypes = {
 	children: PropTypes.any
 };
 
-export default Title;
+export default Subtitle;

@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const webpack = require('webpack');
 const path = require('path');
 const loaders = require('./webpack.loaders');
@@ -7,7 +8,10 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 loaders.push({
 	test: /\.scss$/,
-	loader: ExtractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader?sourceMap&localIdentName=[local]___[hash:base64:5]!sass-loader?outputStyle=expanded'}),
+	loader: ExtractTextPlugin.extract({
+		fallback: 'style-loader',
+		use: 'css-loader?sourceMap&localIdentName=[local]___[hash:base64:5]!sass-loader?outputStyle=expanded'
+	}),
 	exclude: ['node_modules']
 });
 
@@ -21,11 +25,11 @@ module.exports = {
 		filename: '[chunkhash].js'
 	},
 	resolve: {
-	  modules: [
-		'node_modules',
-		'./',
-		'public'
-	],
+		modules: [
+			'node_modules',
+			'./',
+			'public'
+		],
 		extensions: ['.js', '.jsx']
 	},
 	module: {

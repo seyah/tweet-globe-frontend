@@ -28,10 +28,10 @@ module.exports = {
 	},
 	resolve: {
 		modules: [
-		 'node_modules',
-		 './',
-		 'public'
-	 ],
+			'node_modules',
+			'./',
+			'public'
+		],
 		extensions: ['.js', '.jsx']
 	},
 	module: {

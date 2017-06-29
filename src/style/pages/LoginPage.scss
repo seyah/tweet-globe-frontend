@@ -1,10 +1,43 @@
 @import "../_vars.scss";
 
 .login-box {
-  width: 40%;
+  width: 30%;
   margin: 2em;
   padding: 1.5em;
   border: 1px solid $BLACK;
   border-radius: $BORDER_RADIUS_SIZE;
   background-color: rgba($PANEL_BACKGROUND, 0.8);
+
+  .login-form {
+    margin: 1em 0;
+
+    .field {
+      padding: 10px 0;
+
+      label {
+        width: 28%;
+        display: inline-block;
+        margin-right: 2%;
+        text-align: right;
+      }
+
+      input {
+        font-family: 'Open Sans', sans-serif;
+        letter-spacing: 0.45pt;
+
+        &[type=text], &[type=password], &[type=email] {
+          width: 70%;
+          padding: 0;
+          margin: 0;
+          border-width: 0;
+        }
+      }
+    }
+
+    .btn {
+      width: 100%;
+      margin: 1em 0 0;
+      //margin: 5%;
+    }
+  }
 }

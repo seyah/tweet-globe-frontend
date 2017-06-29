@@ -39,7 +39,7 @@ Link.propTypes = {
 };
 
 Link.defaultProps = {
-	icon: null,
+	icon: <i/>,
 	className: '',
 	text: '',
 	link: null,

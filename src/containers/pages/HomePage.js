@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import BorderPage from "../layouts/BorderPage";
+import Title from "../../components/title/Title";
 
 class HomePage extends Component {
 
@@ -7,7 +8,9 @@ class HomePage extends Component {
 		return (
 			<BorderPage>
 				<div className="content">
-
+					<Title>
+						Welcome to Tweet Globe!
+					</Title>
 				</div>
 			</BorderPage>
 		);

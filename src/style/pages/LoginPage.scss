@@ -1,15 +1,19 @@
 @import "../_vars.scss";
 
 .login-box {
-  width: 30%;
+  width: 70%;
   margin: 2em;
   padding: 1.5em;
   border: 1px solid $BLACK;
   border-radius: $BORDER_RADIUS_SIZE;
   background-color: rgba($PANEL_BACKGROUND, 0.8);
 
+  @media screen and (min-width: 1080px) {
+    width: 30%;
+  }
+
   .login-form {
-    margin: 1em 0;
+    margin: 1em 0 0;
 
     .field {
       padding: 10px 0;
@@ -36,8 +40,16 @@
 
     .btn {
       width: 100%;
-      margin: 1em 0 0;
-      //margin: 5%;
+      margin: 1em 0;
+    }
+
+    .hyper-link {
+      display: block;
+      text-align: center;
+
+      @media screen and (min-width: 1080px) {
+        text-align: left;
+      }
     }
   }
 }

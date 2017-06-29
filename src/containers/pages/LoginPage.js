@@ -16,13 +16,13 @@ class LoginPage extends Component {
 						<span className="text-primary bold">Please enter your details to log in:</span>
 						<div className="login-form">
 							<LoginForm/>
+							<span className="text-primary hyper-link">
+								<Link text="Forgot password?"/>
+							</span>
+							<span className="text-primary hyper-link">
+								<Link text="Register"/>
+							</span>
 						</div>
-						<span style={{display: 'block', textAlign: 'left'}} className="text-primary">
-							<Link text="Forgot password?"/>
-						</span>
-						<span style={{display: 'block', textAlign: 'left'}} className="text-primary">
-							<Link text="Register"/>
-						</span>
 					</div>
 				</div>
 			</BorderPage>

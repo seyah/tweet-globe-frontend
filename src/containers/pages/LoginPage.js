@@ -11,7 +11,7 @@ class LoginPage extends Component {
 		return (
 			<BorderPage>
 				<div className="content">
-					<img src={logoImage} style={{width: '15%'}}/>
+					<img src={logoImage} style={{width: '15%', minWidth: '100px'}}/>
 					<div className="login-box">
 						<span className="text-primary bold">Please enter your details to log in:</span>
 						<div className="login-form">

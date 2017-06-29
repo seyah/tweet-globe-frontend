@@ -7,7 +7,7 @@ class Title extends Component {
 
 		return (
 			<div className="title">
-				<h1>{children}</h1>
+				<h1 className="text-primary bold">{children}</h1>
 			</div>
 		);
 	}

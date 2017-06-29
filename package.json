@@ -12,6 +12,7 @@
     "react-router-dom": "^4.0.0-beta.8",
     "react-router-redux": "^5.0.0-alpha.6",
     "redux": "^3.6.0",
+    "redux-form": "^6.8.0",
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
@@ -26,6 +27,8 @@
     "babel-preset-stage-0": "^6.22.0",
     "babel-runtime": "^6.22.0",
     "css-loader": "^0.28.4",
+    "eslint": "^4.1.1",
+    "eslint-config-xo": "^0.18.2",
     "eslint-config-xo-react": "^0.12.0",
     "extract-text-webpack-plugin": "^v2.0.0-rc.1",
     "file-loader": "^0.11.2",
@@ -41,8 +44,7 @@
     "webpack": "^2.2.1",
     "webpack-cleanup-plugin": "^0.5.1",
     "webpack-dashboard": "^0.4.0",
-    "webpack-dev-server": "^2.4.1",
-    "xo": "^0.18.2"
+    "webpack-dev-server": "^2.4.1"
   },
   "scripts": {
     "build": "webpack --config webpack.production.config.js --progress --profile --colors",
@@ -55,14 +57,12 @@
       "react-app"
     ]
   },
-  "xo": {
+  "eslintConfig": {
+    "extends": ["xo", "xo-react"],
     "rules": {
-      "unicorn/filename-case": [
-        "error",
-        {
-          "case": "pascalCase"
-        }
-      ]
+      "react/forbid-component-props": "off",
+      "react/jsx-no-bind": "off",
+      "react/jsx-closing-bracket-location": "off"
     }
   }
 }

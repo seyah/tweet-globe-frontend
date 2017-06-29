@@ -19,8 +19,8 @@ export const store = createStore(
 
 if (module.hot) {
 	module.hot.accept('./reducers/index.js', () =>
-        store.replaceReducer(require('./reducers/index.js').default)
-    );
+		store.replaceReducer(require('./reducers/index.js').default)
+	);
 }
 
 const App = () => (

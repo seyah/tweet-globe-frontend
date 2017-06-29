@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import './Banner.scss';
 
 class Banner extends Component {
-
 	render() {
 		return (
 			<div className="banner">
@@ -15,11 +15,16 @@ class Banner extends Component {
 			</div>
 		);
 	}
-
 }
 
+Banner.defaultProps = {
+	logo: null,
+	children: null
+};
+
 Banner.propTypes = {
-	logo: React.PropTypes.object
+	logo: PropTypes.object,
+	children: PropTypes.any
 };
 
 export default Banner;

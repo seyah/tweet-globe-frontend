@@ -2,8 +2,8 @@ import axios from 'axios';
 import * as instr from './actionTypes';
 
 const instance = axios.create({
-    // TODO Assign URL of API
-	baseURL: '//localhost:8081/extended-url',
+	// TODO Assign URL of API
+	baseURL: '//localhost:8082',
 	withCredentials: true
 });
 
@@ -25,5 +25,3 @@ export function getSampleContent() {
 		});
 	};
 }
-
-export default instance;

@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-
+import PropTypes from 'prop-types';
 import './Page.scss';
 import Header from '../../containers/blocks/header/Header';
 import Footer from '../../containers/blocks/footer/Footer';
 
 class BorderPage extends Component {
-
 	render() {
 		return (
 			<div className="border-page">
@@ -15,11 +14,18 @@ class BorderPage extends Component {
 			</div>
 		);
 	}
-
 }
 
 BorderPage.contextTypes = {
-	store: React.PropTypes.object.isRequired
+	store: PropTypes.object.isRequired
+};
+
+BorderPage.defaultProps = {
+	children: null
+};
+
+BorderPage.propTypes = {
+	children: PropTypes.any
 };
 
 export default BorderPage;

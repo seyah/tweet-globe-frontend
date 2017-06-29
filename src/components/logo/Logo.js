@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import './Logo.scss';
 
 class Logo extends Component {
-
 	render() {
 		return (
 			<div className="brand-image">
@@ -14,9 +14,14 @@ class Logo extends Component {
 	}
 }
 
+Logo.defaultProps = {
+	link: '',
+	image: null
+};
+
 Logo.propTypes = {
-	link: React.PropTypes.string,
-	image: React.PropTypes.string
+	link: PropTypes.string,
+	image: PropTypes.string
 };
 
 export default Logo;

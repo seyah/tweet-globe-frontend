@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-
+import PropTypes from 'prop-types';
 import './Page.scss';
 
 class Page extends Component {
-
 	render() {
 		return (
 			<div className="page">
@@ -11,11 +10,18 @@ class Page extends Component {
 			</div>
 		);
 	}
-
 }
 
 Page.contextTypes = {
-	store: React.PropTypes.object.isRequired
+	store: PropTypes.object.isRequired
+};
+
+Page.defaultProps = {
+	children: null
+};
+
+Page.propTypes = {
+	children: PropTypes.any
 };
 
 export default Page;

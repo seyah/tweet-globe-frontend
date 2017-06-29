@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import Link from '../../../components/link/Link';
 import Banner from '../../../components/banner/Banner';
 import BannerImage from 'images/logo.png';
@@ -6,24 +8,37 @@ import './Header.scss';
 import Logo from '../../../components/logo/Logo';
 
 class Header extends Component {
-
 	render() {
+		let {user} = this.props;
+
+		let accountLinks = user.isAuthenticated ? (
+			<div className="banner-link">
+                Hi {user.username}
+				<Link icon={<i className="fa fa-user"/>} link="/account" text=" My Account"/>
+			</div>
+		) : (
+			<div className="banner-link">
+				<Link icon={<i className="fa fa-user-circle"/>} link="/login" text=" Login"/>
+			</div>
+		);
 		return (
 			<div className="header">
-				<Banner logo={<Logo link="/" image={BannerImage} />}>
-					<div className="banner-link">
-						<Link icon={<i className="fa fa-user" />} link="/contact" text=" My Account" />
-					</div>
+				<Banner logo={<Logo link="/" image={BannerImage}/>}>
+					{accountLinks}
 				</Banner>
 			</div>
 		);
 	}
 }
 
+Header.propTypes = {
+	user: PropTypes.object.isRequired
+};
+
 const mapStateToProps = function (state) {
 	return {
-		selectedCase: state.selectedCase
+		user: state.user
 	};
 };
 
-export default Header;
+export default connect(mapStateToProps)(Header);

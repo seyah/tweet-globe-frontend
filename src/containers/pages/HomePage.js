@@ -3,15 +3,15 @@ import BorderPage from "../layouts/BorderPage";
 
 class HomePage extends Component {
 
-    render() {
-        return (
-            <BorderPage>
-                <div className="content">
+	render() {
+		return (
+			<BorderPage>
+				<div className="content">
 
-                </div>
-            </BorderPage>
-        );
-    }
+				</div>
+			</BorderPage>
+		);
+	}
 
 }
 

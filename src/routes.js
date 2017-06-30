@@ -4,6 +4,7 @@ import HomePage from './containers/pages/HomePage';
 import axios from 'axios';
 import AccountPage from './containers/pages/AccountPage';
 import LoginPage from './containers/pages/LoginPage';
+import RegisterPage from "./containers/pages/RegisterPage";
 
 const instance = axios.create({
 	// TODO Assign URL of API
@@ -17,9 +18,10 @@ function scrollToTop() {
 
 const Routes = () => {
 	return ([
-		<Route key={0} path="/" exact component={() => <HomePage/>}/>,
-		<Route key={-1} path="/login" component={() => <LoginPage/>}/>,
-		<PrivateRoute key={1} path="/protected" component={() => <AccountPage/>}/>
+		<Route key={0} path="/" onEnter={scrollToTop} exact component={() => <HomePage/>}/>,
+		<Route key={-1} path="/login" onEnter={scrollToTop} component={() => <LoginPage/>}/>,
+		<Route key={-2} path="/register" onEnter={scrollToTop} component={() => <RegisterPage/>}/>,
+		<PrivateRoute key={1} path="/protected" onEnter={scrollToTop} component={() => <AccountPage/>}/>
 	]);
 };
 

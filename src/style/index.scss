@@ -41,8 +41,8 @@ html, body {
   border: none;
 
   &.btn-primary {
-    background-color: $MIDNIGHT_SPACE_GRAY;
-    border: 1px solid darken($MIDNIGHT_SPACE_GRAY, 5);
+    background-color: $BTN_PRIMARY;
+    border: 1px solid darken($BTN_PRIMARY, 5);
   }
 
   &.btn-default {

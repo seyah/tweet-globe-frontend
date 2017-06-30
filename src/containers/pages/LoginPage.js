@@ -20,7 +20,7 @@ class LoginPage extends Component {
 								<Link text="Forgot password?"/>
 							</span>
 							<span className="text-primary hyper-link">
-								<Link text="Register"/>
+								<Link link="/register" text="Register"/>
 							</span>
 						</div>
 					</div>
@@ -36,14 +36,14 @@ let LoginForm = props => {
 	return (
 		<form onSubmit={() => console.log('hi')}>
 			<div className="field">
-				<label className="text-primary bold" htmlFor="username">Username</label>
-				<Field name="username" component="input" type="text" validate={[required]}/>
+				<Field name="username" component="input" type="text" placeholder="Username" validate={[required]}/>
 			</div>
 			<div className="field">
-				<label className="text-primary bold" htmlFor="password">Password</label>
-				<Field name="password" component="input" type="password" validate={[required]}/>
+				<Field name="password" component="input" type="password" placeholder="Password" validate={[required]}/>
 			</div>
-			<button className="btn btn-primary" type="submit" disabled={pristine || submitting}>Submit</button>
+			<div style={{textAlign: 'right'}}>
+				<button className="btn btn-primary" type="submit" disabled={pristine || submitting}>Submit</button>
+			</div>
 		</form>
 	);
 };

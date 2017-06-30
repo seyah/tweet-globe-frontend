@@ -1,5 +1,8 @@
 import axios from 'axios';
-import {displayAuthError} from '../reducers/authentication';
+
+const axe = axios.create({
+	baseURL: '//127.0.0.1:8080'
+});
 
 const setupAxiosInterceptors = onUnauthenticated => {
 	const onRequestSuccess = config => {
@@ -18,10 +21,12 @@ const setupAxiosInterceptors = onUnauthenticated => {
 		}
 		return Promise.reject(error);
 	};
-	axios.interceptors.request.use(onRequestSuccess);
-	axios.interceptors.response.use(onResponseSuccess, onResponseError);
+	axe.interceptors.request.use(onRequestSuccess);
+	axe.interceptors.response.use(onResponseSuccess, onResponseError);
 };
 
 export {
 	setupAxiosInterceptors
 };
+
+export default axe;

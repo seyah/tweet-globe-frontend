@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {Field, reduxForm} from 'redux-form';
+import {connect} from 'react-redux';
+import {register} from '../../../reducers/authentication';
 import BorderPage from '../layouts/BorderPage';
 import logoImage from '../../../../public/images/logo.png';
 import '../../style/pages/RegisterPage.scss';
@@ -13,8 +16,9 @@ class RegisterPage extends Component {
 	}
 
 	handleSubmit(formProps) {
-		// TODO: Something to do with username and password
+		// TODO: Something to do with username and password and everything else
 		console.log(formProps);
+		this.props.dispatch(register(formProps));
 	}
 
 	render() {
@@ -119,12 +123,9 @@ const validate = values => {
 		errors.email = 'Invalid email address';
 	}
 	if (!values.password) {
-		errors.username = 'Required';
-	} else if (values.username.length < 6) {
-		errors.username = 'Must be 6 characters or more';
-	}
-	if (!values.confirmPassword !== values.password) {
-		errors.username = 'Password does not match';
+		errors.password = 'Required';
+	} else if (values.password.length < 6) {
+		errors.password = 'Must be 6 characters or more';
 	}
 	return errors;
 };
@@ -134,6 +135,8 @@ RegisterForm = reduxForm({
 	validate
 })(RegisterForm);
 
-RegisterPage.propTypes = {};
+RegisterPage.propTypes = {
+	dispatch: PropTypes.func.isRequired
+};
 
-export default RegisterPage;
+export default connect()(RegisterPage);

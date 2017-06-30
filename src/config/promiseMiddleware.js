@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axe from '../rest/rest';
 
 export default function promiseMiddleware({dispatch, getState}) {
 	return next => action => {
@@ -22,7 +22,7 @@ export default function promiseMiddleware({dispatch, getState}) {
 		const onRejected = error => {
 			next({...rest, error, type: FAILURE});
 		};
-		return promise(axios)
+		return promise(axe)
 			.then(onFulfilled, onRejected)
 			.catch(error => {
 				console.error('MIDDLEWARE ERROR:', error);

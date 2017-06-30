@@ -8,9 +8,9 @@ const LOGOUT = 'authentication/LOGOUT';
 const LOGOUT_SUCCESS = 'authentication/LOGOUT_SUCCESS';
 const LOGOUT_FAIL = 'authentication/LOGOUT_FAIL';
 
-const GET_SESSION = 'authentication/GET_SESSION';
-const GET_SESSION_SUCCESS = 'authentication/GET_SESSION_SUCCESS';
-const GET_SESSION_FAIL = 'authentication/GET_SESSION_FAIL';
+const REGISTER = 'authentication/REGISTER';
+const REGISTER_SUCCESS = 'authentication/REGISTER_SUCCESS';
+const REGISTER_FAIL = 'authentication/REGISTER_FAIL';
 
 const ERROR_MESSAGE = 'authentication/ERROR_MESSAGE';
 
@@ -45,27 +45,6 @@ export default function reducer(state = initialState, action) {
 				isAuthenticated: false,
 				username: null
 			};
-		case GET_SESSION:
-			return {
-				...state,
-				loading: true
-			};
-		case GET_SESSION_SUCCESS:
-			return {
-				...state,
-				isAuthenticated: action.result.data.authenticated || false,
-				username: action.result.data.userName,
-				errorMessage: null,
-				loading: false
-			};
-		case GET_SESSION_FAIL:
-			return {
-				...state,
-				isAuthenticated: false,
-				username: null,
-				debugError: action.error,
-				loading: false
-			};
 		case ERROR_MESSAGE:
 			return {
 				...state,
@@ -80,6 +59,16 @@ export default function reducer(state = initialState, action) {
 
 export function displayAuthError(message) {
 	return {type: ERROR_MESSAGE, message};
+}
+
+export function register(details) {
+	return {
+		types: [REGISTER, REGISTER_SUCCESS, REGISTER_FAIL],
+		promise: client => client.post('/auth/register', details),
+		afterSuccess: (dispatch, getState, response) => {
+			console.log(response);
+		}
+	};
 }
 
 export function login(username, password) {
@@ -101,13 +90,6 @@ export function logout() {
 		afterSuccess: () => {
 			browserHistory.push('login');
 		}
-	};
-}
-
-export function getSession() {
-	return {
-		types: [GET_SESSION, GET_SESSION_SUCCESS, GET_SESSION_FAIL],
-		promise: client => client.get('/api/session')
 	};
 }
 

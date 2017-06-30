@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux';
 import {routerReducer} from 'react-router-redux';
-import {reducer as formReducer} from 'redux-form'
+import {reducer as formReducer} from 'redux-form';
 
-import userReducer from './userReducer';
+import authentication from './authentication';
 
 const reducers = combineReducers({
-	user: userReducer,
+	authentication,
 	router: routerReducer,
 	form: formReducer
 });

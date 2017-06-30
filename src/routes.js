@@ -1,10 +1,10 @@
 import React from 'react';
 import {Route, Redirect} from 'react-router';
-import HomePage from './containers/pages/HomePage';
+import HomePage from './ui/containers/pages/HomePage';
 import axios from 'axios';
-import AccountPage from './containers/pages/AccountPage';
-import LoginPage from './containers/pages/LoginPage';
-import RegisterPage from "./containers/pages/RegisterPage";
+import AccountPage from './ui/containers/pages/AccountPage';
+import LoginPage from './ui/containers/pages/LoginPage';
+import RegisterPage from "./ui/containers/pages/RegisterPage";
 
 const instance = axios.create({
 	// TODO Assign URL of API
@@ -16,11 +16,12 @@ function scrollToTop() {
 	window.scrollTo(0, 0);
 }
 
-const Routes = () => {
+const routes = (onLogout) => {
 	return ([
 		<Route key={0} path="/" onEnter={scrollToTop} exact component={() => <HomePage/>}/>,
 		<Route key={-1} path="/login" onEnter={scrollToTop} component={() => <LoginPage/>}/>,
 		<Route key={-2} path="/register" onEnter={scrollToTop} component={() => <RegisterPage/>}/>,
+		<Route key={-3} path="/logout" onEnter={onLogout}/>,
 		<PrivateRoute key={1} path="/protected" onEnter={scrollToTop} component={() => <AccountPage/>}/>
 	]);
 };
@@ -42,4 +43,4 @@ const PrivateRoute = ({component: Component, ...rest}) => (
 		)}/>
 );
 
-export default Routes;
+export default routes;

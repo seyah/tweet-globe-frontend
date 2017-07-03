@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
+import {push} from 'react-router-redux';
 import {register, displayAuthError, displayMessage} from '../../../reducers/authentication';
 import BorderPage from '../layouts/BorderPage';
 import logoImage from '../../../../public/images/logo.png';
@@ -14,6 +15,12 @@ class RegisterPage extends Component {
 
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
+
+	componentWillMount(){
+	    if(this.props.authentication.isAuthenticated){
+	        this.props.dispatch(push(''));
+        }
+    }
 
 	handleSubmit(formProps) {
 		this.props.dispatch(register(formProps));
@@ -51,18 +58,20 @@ class RegisterPage extends Component {
 	}
 }
 
+const renderField = ({input, label, type, meta: {touched, error, warning}}) => (
+    <div>
+        <input {...input} placeholder={label} type={type}/>
+        {touched &&
+        ((error && <span className="text text-danger bold">{error}</span>) ||
+        (warning && <span>{warning}</span>))}
+    </div>
+);
+
 let RegisterForm = props => {
 	// eslint-disable-next-line react/prop-types
 	const {pristine, submitting, handleSubmit} = props;
 	// eslint-disable-next-line react/prop-types
-	const renderField = ({input, label, type, meta: {touched, error, warning}}) => (
-		<div>
-			<input {...input} placeholder={label} type={type}/>
-			{touched &&
-			((error && <span className="text text-danger bold">{error}</span>) ||
-				(warning && <span>{warning}</span>))}
-		</div>
-	);
+
 	return (
 		<form onSubmit={handleSubmit}>
 			<div className="field">

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
+import {push} from 'react-router-redux';
 import {login, displayAuthError, displayMessage} from '../../../reducers/authentication';
 import BorderPage from '../layouts/BorderPage';
 import logoImage from '../../../../public/images/logo.png';
@@ -14,6 +15,18 @@ class LoginPage extends Component {
 
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
+
+    componentWillMount(){
+        if(this.props.authentication.isAuthenticated){
+            this.props.dispatch(push(''));
+        }
+    }
+
+    componentWillUpdate(){
+        if(this.props.authentication.isAuthenticated){
+            this.props.dispatch(push(''));
+        }
+    }
 
 	handleSubmit(formProps) {
 		this.props.dispatch(login(formProps.email, formProps.password));

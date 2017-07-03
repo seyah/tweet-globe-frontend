@@ -2,7 +2,10 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getUser} from '../../../reducers/authentication';
+import routes from '../../../router/routes';
 import './Page.scss';
+
+
 
 class Page extends Component {
 
@@ -11,6 +14,7 @@ class Page extends Component {
 	}
 
 	render() {
+	    setTimeout(()=>{}, 100);
 		return (
 			<div className="page">
 				{this.props.children}
@@ -18,10 +22,6 @@ class Page extends Component {
 		);
 	}
 }
-
-Page.contextTypes = {
-	store: PropTypes.object.isRequired
-};
 
 Page.defaultProps = {
 	children: null

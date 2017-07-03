@@ -30,7 +30,6 @@ const initialState = {
 // Reducer
 
 export default function reducer(state = initialState, action) {
-	console.log(action);
 	switch (action.type) {
 		case REGISTER_SUCCESS:
 			return {

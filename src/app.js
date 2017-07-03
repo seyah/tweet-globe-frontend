@@ -8,12 +8,10 @@ import {redirectToLoginWithMessage, logout} from 'reducers/authentication';
 
 import reducers from './reducers';
 import {createStore, applyMiddleware, compose} from 'redux';
-import DevTools, {devtools} from './config/devtools';
+import DevTools from './config/devtools';
 import promiseMiddleware from './config/promiseMiddleware';
 import thunkMiddleware from 'redux-thunk';
-
-import routes from './routes';
-import Page from './ui/containers/layouts/Page';
+import Routes from "./router/routes";
 import './ui/style/index.scss';
 
 export const history = createHistory();
@@ -29,10 +27,7 @@ setupAxiosInterceptors(() => actions.redirectToLoginWithMessage('login.error.una
 const App = () => (
 	<Provider store={store}>
 		<ConnectedRouter history={history}>
-			<Page>
-				{devtools}
-				{routes(actions.logout)}
-			</Page>
+			<Routes />
 		</ConnectedRouter>
 	</Provider>
 );

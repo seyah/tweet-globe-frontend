@@ -8,6 +8,7 @@ class Banner extends Component {
 			<div className="banner">
 				<div className="banner-left">
 					{this.props.logo}
+                    {this.props.leftChildren}
 				</div>
 				<div className="banner-right">
 					{this.props.children}
@@ -19,12 +20,14 @@ class Banner extends Component {
 
 Banner.defaultProps = {
 	logo: null,
-	children: null
+	children: null,
+	leftChildren: null,
 };
 
 Banner.propTypes = {
 	logo: PropTypes.object,
-	children: PropTypes.any
+	children: PropTypes.any,
+	leftChildren: PropTypes.any,
 };
 
 export default Banner;

@@ -6,6 +6,7 @@ import Banner from '../../../components/banner/Banner';
 import BannerImage from 'images/logo.png';
 import './Header.scss';
 import Logo from '../../../components/logo/Logo';
+import Navigation from "../navigation/Navigation";
 
 class Header extends Component {
 	render() {
@@ -13,9 +14,9 @@ class Header extends Component {
 
 		let accountLinks = authentication.isAuthenticated && authentication.user !== null ? (
 			<div className="banner-link">
-				<span className="fa fa-user"/><span className="text text-primary">Hi, {authentication.user.firstName}</span>
+				<span className="text text-primary">Hi, {authentication.user.firstName}</span>
 				<span>|</span>
-				<Link link="/account" text="My Account"/>
+                <span className="fa fa-user"/><Link link="/account" text="My Account"/>
 			</div>
 		) : (
 			<div className="banner-link">
@@ -24,7 +25,7 @@ class Header extends Component {
 		);
 		return (
 			<div className="header">
-				<Banner logo={<Logo link="/" image={BannerImage}/>}>
+				<Banner logo={<Logo link="/" image={BannerImage}/>} leftChildren={<Navigation/>}>
 					{accountLinks}
 				</Banner>
 			</div>

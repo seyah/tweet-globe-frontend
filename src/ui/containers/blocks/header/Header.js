@@ -11,9 +11,9 @@ class Header extends Component {
 	render() {
 		let {authentication} = this.props;
 
-		let accountLinks = authentication.isAuthenticated ? (
+		let accountLinks = authentication.isAuthenticated && authentication.user !== null ? (
 			<div className="banner-link">
-                Hi {authentication.username}
+                Hi {authentication.user.username}
 				<Link icon={<i className="fa fa-user"/>} link="/account" text=" My Account"/>
 			</div>
 		) : (

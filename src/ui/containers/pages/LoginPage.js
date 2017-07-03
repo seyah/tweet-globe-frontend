@@ -16,8 +16,7 @@ class LoginPage extends Component {
 	}
 
 	handleSubmit(formProps) {
-		// TODO: Something to do with username and password
-		console.log(formProps);
+		this.props.dispatch(login(formProps.email, formProps.password));
 	}
 
 	render() {
@@ -61,7 +60,7 @@ let LoginForm = props => {
 	return (
 		<form onSubmit={handleSubmit}>
 			<div className="field">
-				<Field name="username" component="input" type="text" placeholder="Username"/>
+				<Field name="email" component="input" type="email" placeholder="Email"/>
 			</div>
 			<div className="field">
 				<Field name="password" component="input" type="password" placeholder="Password"/>

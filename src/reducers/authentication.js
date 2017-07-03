@@ -1,4 +1,4 @@
-import {history} from '../app';
+import {push} from 'react-router-redux';
 
 const LOGIN = 'authentication/LOGIN';
 const LOGIN_SUCCESS = 'authentication/LOGIN_SUCCESS';
@@ -12,12 +12,16 @@ const REGISTER = 'authentication/REGISTER';
 const REGISTER_SUCCESS = 'authentication/REGISTER_SUCCESS';
 const REGISTER_FAIL = 'authentication/REGISTER_FAIL';
 
+const GET_USER = 'authentication/GET_USER';
+const GET_USER_SUCCESS = 'authentication/GET_USER_SUCCESS';
+const GET_USER_FAIL = 'authentication/GET_USER_FAIL';
+
 const MESSAGE = 'authentication/MESSAGE';
 const ERROR_MESSAGE = 'authentication/ERROR_MESSAGE';
 
 const initialState = {
 	isAuthenticated: false,
-	username: null,
+	user: null,
 	errorMessage: null,
 	message: null,
 	loading: true
@@ -38,30 +42,43 @@ export default function reducer(state = initialState, action) {
 			return {
 				...state,
 				isAuthenticated: false,
-				username: null,
+				user: null,
 				errorMessage: action.error.response.data.message,
 				message: null
 			};
 		case LOGIN_SUCCESS:
 			return {
 				...state,
-				isAuthenticated: action.result.data.authenticated,
-				username: action.result.data.userName,
-				errorMessage: null
+				isAuthenticated: true,
+				errorMessage: null,
 			};
 		case LOGIN_FAIL:
 			return {
 				...state,
 				isAuthenticated: false,
-				username: null,
+				user: null,
 				message: null,
-				errorMessage: action.error.response.data.message
+				errorMessage: action.error.message
+			};
+		case GET_USER_SUCCESS:
+			return {
+				...state,
+				user: {...action.result.data},
+				errorMessage: null,
+			};
+		case GET_USER_FAIL:
+			return {
+				...state,
+				isAuthenticated: false,
+				user: null,
+				message: null,
+				errorMessage: action.error.message
 			};
 		case LOGOUT_SUCCESS:
 			return {
 				...state,
 				isAuthenticated: false,
-				username: null
+				user: null
 			};
 		case MESSAGE:
 			return {
@@ -93,19 +110,20 @@ export function register(details) {
 		types: [REGISTER, REGISTER_SUCCESS, REGISTER_FAIL],
 		promise: client => client.post('/auth/register', details),
 		afterSuccess: (dispatch, getState, response) => {
-			history.push('login');
+			dispatch(push('login'))
 		}
 	};
 }
 
-export function login(username, password) {
+export function login(email, password) {
 	return {
 		types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
-		promise: client => client.post('/api/session', {username, password}),
+		promise: client => client.post('/auth/login', {email, password}),
 		afterSuccess: (dispatch, getState, response) => {
-			localStorage.setItem('auth-token', response.headers['x-auth-token']);
-			const routingState = getState().router.locationBeforeTransitions.state || {};
-			history.push(routingState.nextPathname || '');
+			localStorage.setItem('auth-token', response.data.token);
+			//const routingState = getState().router.locationBeforeTransitions.state || {};
+			dispatch(getUser());
+			dispatch(push(''))
 		}
 	};
 }
@@ -116,6 +134,15 @@ export function logout() {
 		promise: client => client.delete('/api/session'),
 		afterSuccess: () => {
 			history.push('login');
+		}
+	};
+}
+
+export function getUser() {
+	return {
+		types: [GET_USER, GET_USER_SUCCESS, GET_USER_FAIL],
+		promise: client => client.get('/api/user/me'),
+		afterSuccess: (dispatch, getState, response) => {
 		}
 	};
 }

@@ -21,10 +21,11 @@ class AuthenticatedRoute extends Component {
             if (isAuthenticated) {
                 return render ? render(props) : <Component {...props} />;
             }
+            console.log(props.match.path)
             return (
                 <Redirect
                     to={{
-                        pathname: props.match.path,
+                        pathname: '/login',
                         state: { from: props.location },
                     }}
                 />

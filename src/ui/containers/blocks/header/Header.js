@@ -21,6 +21,8 @@ class Header extends Component {
 		) : (
 			<div className="banner-link">
 				<Link icon={<i className="fa fa-user-circle"/>} link="/login" text=" Login"/>
+                {'|'}
+				<Link icon={<i className="fa fa-user-plus"/>} link="/register" text=" Register"/>
 			</div>
 		);
 		return (

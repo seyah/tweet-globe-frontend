@@ -72,7 +72,7 @@ export default function reducer(state = initialState, action) {
 				isAuthenticated: false,
 				user: null,
 				message: null,
-				errorMessage: action.error.message
+				errorMessage: 'You must be logged in to do that!'
 			};
 		case LOGOUT_SUCCESS:
 			return {

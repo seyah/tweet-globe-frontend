@@ -8,6 +8,7 @@ import RegisterPage from "../ui/containers/pages/RegisterPage";
 import AuthenticatedRoute from "./AuthenticatedRoute";
 import Page from "../ui/containers/layouts/Page";
 import AnonymousRoute from "./AnonymousRoute";
+import WorldPage from "../ui/containers/pages/WorldPage";
 
 const instance = axios.create({
     // TODO Assign URL of API
@@ -26,6 +27,7 @@ export default () => {
             <AnonymousRoute key={-1} path="/login" onEnter={scrollToTop} render={() => <LoginPage/>}/>
             <AnonymousRoute key={-2} path="/register" onEnter={scrollToTop} render={() => <RegisterPage/>}/>
             <AuthenticatedRoute key={1} path="/account" onEnter={scrollToTop} render={() => <AccountPage/>}/>
+            <AuthenticatedRoute key={2} path="/world" onEnter={scrollToTop} render={() => <WorldPage/>}/>
         </Page>
     );
 };

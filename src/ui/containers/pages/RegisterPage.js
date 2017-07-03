@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
-import {register} from '../../../reducers/authentication';
+import {register, displayAuthError, displayMessage} from '../../../reducers/authentication';
 import BorderPage from '../layouts/BorderPage';
 import logoImage from '../../../../public/images/logo.png';
 import '../../style/pages/RegisterPage.scss';
@@ -16,12 +16,20 @@ class RegisterPage extends Component {
 	}
 
 	handleSubmit(formProps) {
-		// TODO: Something to do with username and password and everything else
-		console.log(formProps);
 		this.props.dispatch(register(formProps));
 	}
 
 	render() {
+
+		let message = <div className="auth-message success">
+			<i className="close fa fa-close" onClick={()=>this.props.dispatch(displayMessage(null))}/>
+			{this.props.authentication.message}
+		</div>;
+		let errorMessage = <div className="auth-message error">
+			<i className="close fa fa-close" onClick={()=>this.props.dispatch(displayAuthError(null))}/>
+			{this.props.authentication.errorMessage}
+		</div>;
+
 		return (
 			<BorderPage>
 				<div className="content">
@@ -30,6 +38,8 @@ class RegisterPage extends Component {
 						<span className="text text-primary bold">Please enter your details to log in:</span>
 						<div className="register-form">
 							<RegisterForm onSubmit={this.handleSubmit}/>
+							{this.props.authentication.message !== null && message}
+							{this.props.authentication.errorMessage !== null && errorMessage}
 							<span className="text text-primary hyper-link">
 								<Link link="/login" text="Already have an account?"/>
 							</span>
@@ -92,7 +102,7 @@ let RegisterForm = props => {
 			</div>
 			<div className="field">
 				<Field
-					name="confirmPassword"
+					name="matchingPassword"
 					type="password"
 					component={renderField}
 					label="Confirm Password"/>
@@ -136,7 +146,14 @@ RegisterForm = reduxForm({
 })(RegisterForm);
 
 RegisterPage.propTypes = {
+	authentication: PropTypes.object.isRequired,
 	dispatch: PropTypes.func.isRequired
 };
 
-export default connect()(RegisterPage);
+let mapStateToProps = (state) => {
+	return {
+		authentication: state.authentication
+	}
+};
+
+export default connect(mapStateToProps)(RegisterPage);

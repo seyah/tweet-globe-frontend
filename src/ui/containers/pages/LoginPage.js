@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
-import {login} from '../../../reducers/authentication';
+import {login, displayAuthError, displayMessage} from '../../../reducers/authentication';
 import BorderPage from '../layouts/BorderPage';
 import logoImage from '../../../../public/images/logo.png';
 import '../../style/pages/LoginPage.scss';
@@ -21,6 +21,15 @@ class LoginPage extends Component {
 	}
 
 	render() {
+		let message = <div className="auth-message success">
+			<i className="close fa fa-close" onClick={()=>this.props.dispatch(displayMessage(null))}/>
+			{this.props.authentication.message}
+		</div>;
+		let errorMessage = <div className="auth-message error">
+			<i className="close fa fa-close" onClick={()=>this.props.dispatch(displayAuthError(null))}/>
+			{this.props.authentication.errorMessage}
+		</div>;
+
 		return (
 			<BorderPage>
 				<div className="content">
@@ -28,6 +37,8 @@ class LoginPage extends Component {
 					<div className="login-box">
 						<span className="text text-primary bold">Please enter your details to log in:</span>
 						<div className="login-form">
+							{this.props.authentication.message !== null && message}
+							{this.props.authentication.errorMessage !== null && errorMessage}
 							<LoginForm onSubmit={this.handleSubmit}/>
 							<span className="text text-primary hyper-link">
 								<Link text="Forgot password?"/>
@@ -68,4 +79,10 @@ LoginForm = reduxForm({
 	form: 'login'
 })(LoginForm);
 
-export default connect(state => ({errorMessage: state.authentication.errorMessage}), {login})(LoginPage);
+let mapStateToProps = (state) => {
+	return {
+		authentication: state.authentication
+	}
+};
+
+export default connect(mapStateToProps)(LoginPage);

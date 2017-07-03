@@ -16,7 +16,7 @@ import routes from './routes';
 import Page from './ui/containers/layouts/Page';
 import './ui/style/index.scss';
 
-const history = createHistory();
+export const history = createHistory();
 const middlewares = process.env.NODE_ENV === 'development' ?
 	[applyMiddleware(thunkMiddleware, promiseMiddleware, routerMiddleware(history)), DevTools.instrument()] :
 	[applyMiddleware(thunkMiddleware, promiseMiddleware, routerMiddleware(history))];

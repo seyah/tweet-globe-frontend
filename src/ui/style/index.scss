@@ -58,3 +58,31 @@ html, body {
     background-color: lighten($SPACE_GRAY, 20)
   }
 }
+
+.auth-message {
+  padding: 8px;
+  background-color: $PALE_BLUE;
+  border: 1px solid $DARK_BLUE;
+  color: $DARK_BLUE;
+  font-weight: 500;
+  position: relative;
+
+  &.success {
+    background-color: $PALE_GREEN;
+    border: 1px solid $DARK_GREEN;
+    color: $DARK_GREEN;
+  }
+
+  &.error {
+    background-color: $PALE_RED;
+    border: 1px solid $DARK_RED;
+    color: $DARK_RED;
+  }
+
+  .close {
+    cursor: pointer;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+  }
+}

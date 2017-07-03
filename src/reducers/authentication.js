@@ -63,6 +63,7 @@ export default function reducer(state = initialState, action) {
 		case GET_USER_SUCCESS:
 			return {
 				...state,
+				isAuthenticated: true,
 				user: {...action.result.data},
 				errorMessage: null,
 			};

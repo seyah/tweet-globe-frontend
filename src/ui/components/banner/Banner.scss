@@ -9,10 +9,13 @@
 		float: left;
 		height: 100%;
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: center;
 		align-items: center;
+		.brand-image {
+			display: inline-block;
+		}
 	}
 
 	.banner-right {
@@ -38,8 +41,9 @@
 		}
 	}
 
-	.link {
+	.link, span {
 		font-weight: 500;
 		font-size: 1.2em;
+		margin: 0 5px;
 	}
 }

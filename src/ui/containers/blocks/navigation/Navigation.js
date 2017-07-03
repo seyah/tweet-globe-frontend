@@ -8,12 +8,12 @@ class Navigation extends Component {
 		let {authentication} = this.props;
 
 		return (
-		    <div className="navigation">
+            authentication.isAuthenticated ? <div className="navigation">
                 <Link icon={<i className="fa fa-home"/>} link="/" text=" Home"/>
                 <Link icon={<i className="fa fa-globe"/>} link="/" text=" View Map"/>
                 <Link icon={<i className="fa fa-map-marker"/>} link="/" text=" Bookmarks"/>
                 <Link icon={<i className="fa fa-filter"/>} link="/" text=" Filterer"/>
-            </div>
+            </div> : null
         )
 	}
 }

@@ -22,9 +22,9 @@ function scrollToTop() {
 export default () => {
     return (
         <Page>
-            <Route key={0} path="/" onEnter={scrollToTop} exact render={() => <HomePage/>}/>,
-            <AnonymousRoute key={-1} path="/login" onEnter={scrollToTop} render={() => <LoginPage/>}/>,
-            <AnonymousRoute key={-2} path="/register" onEnter={scrollToTop} render={() => <RegisterPage/>}/>,
+            <Route key={0} path="/" onEnter={scrollToTop} exact render={() => <HomePage/>}/>
+            <AnonymousRoute key={-1} path="/login" onEnter={scrollToTop} render={() => <LoginPage/>}/>
+            <AnonymousRoute key={-2} path="/register" onEnter={scrollToTop} render={() => <RegisterPage/>}/>
             <AuthenticatedRoute key={1} path="/account" onEnter={scrollToTop} render={() => <AccountPage/>}/>
         </Page>
     );

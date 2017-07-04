@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import './Page.scss';
-import Header from '..//blocks/header/Header';
-import Footer from '..//blocks/footer/Footer';
+import Header from '../blocks/header/Header';
+import Footer from '../blocks/footer/Footer';
 
 class BorderPage extends Component {
 	render() {

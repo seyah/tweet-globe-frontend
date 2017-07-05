@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Redirect} from 'react-router';
+import {Route} from 'react-router';
 import HomePage from '../ui/containers/pages/HomePage';
 import axios from 'axios';
 import AccountPage from '../ui/containers/pages/AccountPage';

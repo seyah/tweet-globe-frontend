@@ -55,7 +55,6 @@
     "build": "webpack --config webpack.production.config.js --progress --profile --colors",
     "start": "webpack-dev-server --progress --profile --colors",
     "dev": " webpack-dashboard -- webpack-dev-server --progress --profile --colors",
-    "test": "xo"
   },
   "babel": {
     "presets": [

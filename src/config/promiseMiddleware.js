@@ -5,7 +5,7 @@ export default function promiseMiddleware({dispatch, getState}) {
 		if (typeof action === 'function') {
 			return action(dispatch, getState);
 		}
-		const {promise, types, afterSuccess, ...rest} = action;
+		const {promise, types, afterSuccess, afterFailure, ...rest} = action;
 		if (!action.promise) {
 			return next(action);
 		}
@@ -21,6 +21,9 @@ export default function promiseMiddleware({dispatch, getState}) {
 		};
 		const onRejected = error => {
 			next({...rest, error, type: FAILURE});
+			if(afterFailure) {
+				afterFailure(dispatch, getState, error)
+			}
 		};
 		return promise(axe)
 			.then(onFulfilled, onRejected)

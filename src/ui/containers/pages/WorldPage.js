@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import HeaderPage from "../layouts/HeaderPage";
 import "../../style/pages/WorldPage.scss";
+import Globe from "../../components/globe/Globe";
 
 class WorldPage extends Component {
 
@@ -18,7 +19,7 @@ class WorldPage extends Component {
 					<div className="right-panel">
 						<div className="globe-container">
 							<div className="globe-view">
-
+                                <Globe/>
 							</div>
 							<div className="globe-controls">
 

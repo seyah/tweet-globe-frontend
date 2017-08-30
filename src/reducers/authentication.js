@@ -59,12 +59,19 @@ export default function reducer(state = initialState, action) {
 				message: null,
 				errorMessage: action.error.message
 			};
+		case GET_USER: {
+			return {
+				...state,
+				loading: true
+			}
+		}
 		case GET_USER_SUCCESS:
 			return {
 				...state,
 				isAuthenticated: true,
 				user: {...action.result.data},
 				errorMessage: null,
+				loading: false
 			};
 		case GET_USER_FAIL:
 			return {
@@ -72,6 +79,7 @@ export default function reducer(state = initialState, action) {
 				isAuthenticated: false,
 				user: null,
 				message: null,
+				loading: false,
 				errorMessage: 'You must be logged in to do that!'
 			};
 		case LOGOUT_SUCCESS:

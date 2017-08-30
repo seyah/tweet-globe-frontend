@@ -12,6 +12,7 @@ class Navigation extends Component {
                 <Link icon={<i className="fa fa-home"/>} link="/" text=" Home"/>
                 <Link icon={<i className="fa fa-globe"/>} link="/world" text=" View Map"/>
                 <Link icon={<i className="fa fa-map-marker"/>} link="/" text=" Bookmarks"/>
+                <Link icon={<i className="fa fa-map-marker"/>} link="/judger" text=" Judger"/>
                 <Link icon={<i className="fa fa-filter"/>} link="/" text=" Filterer"/>
             </div> : null
         )

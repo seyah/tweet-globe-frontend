@@ -32,7 +32,7 @@ class AnonymousRoute extends Component {
             );
         };
 
-        return loading ? <Route {...rest} render={renderComponent}/> : null;
+        return !loading ? <Route {...rest} render={renderComponent}/> : null;
     }
 }
 

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import "../../style/pages/JudgerPage.scss";
 import BorderlessPage from "../layouts/BorderlessPage";
 import ActionButton from "../../components/actionButton/ActionButton";
+import TweetBox from "../../components/tweet-box/TweetBox";
 
 class JudgerPage extends Component {
 
@@ -15,10 +16,13 @@ class JudgerPage extends Component {
                         </h1>
                     </div>
                     <div className="panel">
-                        <div className="globe-container">
-                            <div className="globe-view">
+                        <div className="emotion-container">
+                            <div className="tweet-view">
+                                <div className="tweet-box-container">
+                                    <TweetBox/>
+                                </div>
                             </div>
-                            <div className="globe-controls">
+                            <div className="emotion-controls">
                                 <ActionButton icon="fa-thumbs-down fa-3x" colour={'#af0100'}/>
                                 <ActionButton icon="fa-hand-stop-o fa-3x" colour={'#af7d00'}/>
                                 <ActionButton icon="fa-thumbs-up fa-3x" colour={'#15af00'}/>

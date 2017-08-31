@@ -18,6 +18,9 @@ class JudgerPage extends Component {
                     <div className="panel">
                         <div className="emotion-container">
                             <div className="tweet-view">
+                                <div className="tweet-box-preview">
+                                    <TweetBox/>
+                                </div>
                                 <div className="tweet-box-container">
                                     <TweetBox/>
                                 </div>

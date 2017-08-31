@@ -9,7 +9,9 @@ class TweetBox extends Component {
 		let formattedText = text.split(' ');
 		formattedText = formattedText.map(word => {
 			if(word.match('#\\w+')) {
-				return <span className="tweet-hashtag">{word}</span>
+				return <a className="tweet-hashtag"
+                          target="_blank"
+                          href={"https://twitter.com/hashtag/" + word.replace('#', '')}>{word}</a>
 			} else if (word.match('@\\w+')) {
 				return <span className="tweet-mention">{word}</span>
 			} else {
@@ -25,7 +27,9 @@ class TweetBox extends Component {
 		return (
 			<div className="tweet-box">
 				<div className="tweet-content">
-					{result.map(a => a)}
+                    <p>
+					    {result.map(a => a)}
+                    </p>
 				</div>
 				<div className="tweet-footer">
 					<span className="retweets">
@@ -43,7 +47,7 @@ class TweetBox extends Component {
 }
 
 TweetBox.defaultProps = {
-	text: "Some sample text. #Test",
+	text: "Some sample text. #Test @Hi",
 	retweets: 0,
 	favourites: 0
 };

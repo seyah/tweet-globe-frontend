@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import {push} from 'react-router-redux';
 import {login, displayAuthError, displayMessage} from '../../../reducers/authentication';
 import BorderPage from '../layouts/BorderPage';
-import logoImage from '../../../../public/images/logo.png';
 import '../../style/pages/LoginPage.scss';
 import Link from '../../components/link/Link';
 
@@ -45,7 +44,6 @@ class LoginPage extends Component {
 		return (
 			<BorderPage>
 				<div className="content">
-					<img src={logoImage} style={{width: '15%', minWidth: '100px'}}/>
 					<div className="login-box">
 						<span className="text text-primary bold">Please enter your details to log in:</span>
 						<div className="login-form">

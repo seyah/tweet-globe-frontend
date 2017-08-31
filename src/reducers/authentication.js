@@ -80,7 +80,7 @@ export default function reducer(state = initialState, action) {
 				user: null,
 				message: null,
 				loading: false,
-				errorMessage: 'You must be logged in to do that!'
+				errorMessage: null
 			};
 		case LOGOUT_SUCCESS:
 			return {
@@ -132,7 +132,10 @@ export function login(email, password) {
 			//const routingState = getState().router.locationBeforeTransitions.state || {};
 			dispatch(getUser());
 			dispatch(push(''))
-		}
+		},
+		afterFailure: (dispatch, getState, error) => {
+            dispatch(displayAuthError(error.response.data.message));
+        }
 	};
 }
 
@@ -151,7 +154,9 @@ export function getUser() {
 		types: [GET_USER, GET_USER_SUCCESS, GET_USER_FAIL],
 		promise: client => client.get('/api/user/me'),
 		afterSuccess: (dispatch, getState, response) => {
-		}
+		},
+        afterFailure: (dispatch, getState, error) => {
+        }
 	};
 }
 

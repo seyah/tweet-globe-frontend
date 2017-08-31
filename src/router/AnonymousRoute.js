@@ -4,9 +4,6 @@ import {connect} from 'react-redux';
 import {getUser} from "../reducers/authentication";
 
 class AnonymousRoute extends Component {
-    componentWillMount() {
-        this.props.dispatch(getUser());
-    }
 
     render() {
         const {

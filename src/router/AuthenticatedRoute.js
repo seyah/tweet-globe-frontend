@@ -4,9 +4,6 @@ import { connect } from 'react-redux';
 import {getUser} from "../reducers/authentication";
 
 class AuthenticatedRoute extends Component {
-    componentWillMount() {
-        this.props.dispatch(getUser());
-    }
 
     render() {
         const {

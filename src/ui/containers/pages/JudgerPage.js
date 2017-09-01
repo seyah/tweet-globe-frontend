@@ -3,6 +3,8 @@ import "../../style/pages/JudgerPage.scss";
 import BorderlessPage from "../layouts/BorderlessPage";
 import ActionButton from "../../components/actionButton/ActionButton";
 import TweetBox from "../../components/tweet-box/TweetBox";
+import {connect} from "react-redux";
+import {getTweets} from "../../../reducers/twitter";
 
 class JudgerPage extends Component {
 
@@ -29,6 +31,7 @@ class JudgerPage extends Component {
                                 <ActionButton icon="fa-thumbs-down fa-3x" colour={'#af0100'}/>
                                 <ActionButton icon="fa-hand-stop-o fa-3x" colour={'#af7d00'}/>
                                 <ActionButton icon="fa-thumbs-up fa-3x" colour={'#15af00'}/>
+                                <ActionButton icon="fa-thumbs-up fa-3x" colour={'#0100af'} onClick={() => this.props.dispatch(getTweets())}/>
                             </div>
                         </div>
                     </div>
@@ -40,4 +43,10 @@ class JudgerPage extends Component {
 
 JudgerPage.propTypes = {};
 
-export default JudgerPage;
+let mapStateToProps = (state) => {
+    return {
+        twitter: state.twitter
+    }
+};
+
+export default connect(mapStateToProps)(JudgerPage);

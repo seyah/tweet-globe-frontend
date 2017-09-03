@@ -27,6 +27,60 @@
     width: $SIDEBAR_SIZE;
     padding: $HEADER_SIZE 0 $FOOTER_SIZE;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+      flex: 0 1 auto;
+      padding: 5px 0;
+      background-color: lighten($PANEL_BACKGROUND, 10);
+    }
+    .archive {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      overflow: auto;
+
+      .archive-tweet {
+        flex: 0 1 80px;
+        margin: 5px 0;
+        padding: 5px;
+        box-sizing: border-box;
+        border: 1px solid darken($PANEL_BACKGROUND, 5);
+
+        span {
+          font-weight: 600;
+        }
+
+        &.none {
+          background-color: $BANNER_BACKGROUND;
+          span {
+            color: $WHITE;
+          }
+        }
+
+        &.love {
+          background-color: $DARK_GREEN;
+          span {
+            color: $WHITE;
+          }
+        }
+
+        &.hate {
+          background-color: $DARK_RED;
+          span {
+            color: $WHITE;
+          }
+        }
+
+        &.empty {
+          background-color: $GOLD;
+          span {
+            color: $BLACK;
+          }
+        }
+      }
+    }
   }
 
   .emotion-container {
@@ -49,15 +103,31 @@
       .tweet-box-preview {
         margin: 15px 0;
         font-size: 0.5em;
-        height: 30%;
-        width: 45%;
-        opacity: 0.3;
+        height: 20%;
+        width: 30%;
+        opacity: 0.15;
+        pointer-events: none;
       }
 
       .tweet-box-container {
         margin: 15px 0;
-        height: 50%;
-        width: 90%;
+        height: 40%;
+        width: 60%;
+        transition: all .2s;
+
+        &.sending {
+          opacity: 0.5
+        }
+
+        .tweet-box {
+          transition: all .2s;
+          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.75);
+          opacity: 1;
+
+          &.done {
+            opacity: 0;
+          }
+        }
       }
     }
 

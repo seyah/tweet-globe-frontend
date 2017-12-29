@@ -72,7 +72,7 @@ export function getTweets(quantity) {
     if (quantity === undefined) quantity = 1;
     return {
         types: [GET_TRAINING_TWEETS, GET_TRAINING_TWEETS_SUCCESS, GET_TRAINING_TWEETS_FAIL],
-        promise: client => client.get('/tweet/tweets', {
+        promise: client => client.get('/api/tweet/tweets', {
             params: {
                 quantity: quantity
             }
@@ -87,7 +87,7 @@ export function getTweets(quantity) {
 export function judgeTweet(tweet, judgement) {
     return {
         types: [JUDGE_TRAINING_TWEET, JUDGE_TRAINING_TWEET_SUCCESS, JUDGE_TRAINING_TWEET_FAIL],
-        promise: client => client.post('/tweet/judgement', {
+        promise: client => client.post('/api/tweet/judgement', {
             ...tweet,
             params: {
                 judgement: judgement

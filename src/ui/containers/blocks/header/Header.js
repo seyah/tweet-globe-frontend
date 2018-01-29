@@ -1,48 +1,58 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import Link from '../../../components/link/Link';
-import Banner from '../../../components/banner/Banner';
-import BannerImage from 'images/logo.png';
-import './Header.scss';
-import Logo from '../../../components/logo/Logo';
-import Navigation from "../navigation/Navigation";
+import {MenuItem, Nav, Navbar, NavDropdown, NavItem} from "react-bootstrap";
+import {IndexLinkContainer, LinkContainer} from "react-router-bootstrap";
+import {logout} from "../../../../reducers/authentication";
 
 class Header extends Component {
-	render() {
-		let {authentication} = this.props;
+    render() {
+        let {authentication} = this.props;
 
-		let accountLinks = authentication.isAuthenticated && authentication.user !== null ? (
-			<div className="banner-link">
-				<span className="text text-primary">Hi, {authentication.user.firstName}</span>
-				<span>|</span>
-                <span className="fa fa-user"/><Link link="/account" text="My Account"/>
-			</div>
-		) : (
-			<div className="banner-link">
-				<Link icon={<i className="fa fa-user-circle"/>} link="/login" text=" Login"/>
-                {'|'}
-				<Link icon={<i className="fa fa-user-plus"/>} link="/register" text=" Register"/>
-			</div>
-		);
-		return (
-			<div className="header">
-				<Banner logo={<Logo link="/" image={BannerImage}/>} leftChildren={<Navigation/>}>
-					{accountLinks}
-				</Banner>
-			</div>
-		);
-	}
+        let accountLinks = authentication.isAuthenticated && authentication.user !== null ? [
+            <Navbar.Text><span>Hi, {authentication.user.username}</span></Navbar.Text>,
+            <NavDropdown eventKey={1} title={<span>Account</span>} id="nav-account">
+                <LinkContainer to="/account"><MenuItem eventKey={1.1}>View Account</MenuItem></LinkContainer>
+                <MenuItem divider/>
+                <MenuItem eventKey={1.2} onClick={() => this.props.dispatch(logout())}>Logout</MenuItem>
+            </NavDropdown>
+        ] : [
+            <LinkContainer to="/login"><NavItem>Login</NavItem></LinkContainer>,
+            <LinkContainer to="/register"><NavItem>Register</NavItem></LinkContainer>
+        ];
+
+        return (
+            <Navbar fixedTop inverse collapseOnSelect>
+                <Navbar.Header>
+                    <Navbar.Brand>
+                        Tweet Globe
+                    </Navbar.Brand>
+                    <Navbar.Toggle/>
+                </Navbar.Header>
+                <Navbar.Collapse>
+                    <Nav>
+                        <IndexLinkContainer to="/"><NavItem>Home</NavItem></IndexLinkContainer>
+                        <LinkContainer to="/preferences"><NavItem>Preferences</NavItem></LinkContainer>
+                        <LinkContainer to="/recommendations"><NavItem>Recommendations</NavItem></LinkContainer>
+                        <LinkContainer to="/trends"><NavItem>Trends</NavItem></LinkContainer>
+                    </Nav>
+                    <Nav pullRight>
+                        {accountLinks}
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
+        );
+    }
 }
 
 Header.propTypes = {
-	authentication: PropTypes.object.isRequired
+    authentication: PropTypes.object.isRequired
 };
 
 const mapStateToProps = function (state) {
-	return {
-		authentication: state.authentication
-	};
+    return {
+        authentication: state.authentication
+    };
 };
 
 export default connect(mapStateToProps)(Header);

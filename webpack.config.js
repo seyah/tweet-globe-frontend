@@ -35,6 +35,7 @@ module.exports = {
 		extensions: ['.js', '.jsx'],
         alias: {
             "react": __dirname + '/node_modules/react',
+            "jquery": path.join(__dirname, "./jquery-stub.js")
         }
 	},
 	module: {

@@ -1,26 +1,34 @@
 import React, {Component} from 'react';
-import BorderPage from '../layouts/BorderPage';
+import HeaderPage from '../layouts/HeaderPage';
 import Title from '../../components/title/Title';
 import Subtitle from '../../components/subtitle/Subtitle';
 import '../../style/pages/HomePage.scss';
-import TweetGlobe from '../../../../public/images/tweetglobe.png';
+import {Col, Grid, Jumbotron, Row} from "react-bootstrap";
 
 class HomePage extends Component {
-	render() {
-		return (
-			<BorderPage>
-				<div className="content">
-					<div className="splash">
-{/*
-						<img src={TweetGlobe} style={{width: '30%', minWidth: '100px'}}/>
-*/}
-						<Title>Welcome to Tweet Globe</Title>
-						<Subtitle>The interactive social globe</Subtitle>
-					</div>
-				</div>
-			</BorderPage>
-		);
-	}
+    render() {
+        return (
+            <HeaderPage centered>
+                <Grid>
+                    <Row>
+                        <Col xs={12}>
+                            <div className="splash">
+                                <Jumbotron>
+                                    <h1>Tweet Globe</h1>
+                                    <p>
+                                        The interactive twitter profiler.
+                                    </p>
+                                    <p>
+                                        <small>test</small>
+                                    </p>
+                                </Jumbotron>
+                            </div>
+                        </Col>
+                    </Row>
+                </Grid>
+            </HeaderPage>
+        );
+    }
 }
 
 HomePage.propTypes = {};

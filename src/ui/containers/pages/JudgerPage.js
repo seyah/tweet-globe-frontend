@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import "../../style/pages/JudgerPage.scss";
-import BorderlessPage from "../layouts/BorderlessPage";
+import HeaderPage from "../layouts/HeaderPage";
 import ActionButton from "../../components/actionButton/ActionButton";
 import TweetBox from "../../components/tweet-box/TweetBox";
 import {connect} from "react-redux";
@@ -20,7 +20,7 @@ class JudgerPage extends Component {
             nextTweet = training.tweets[1];
 
         return (
-            <BorderlessPage>
+            <HeaderPage>
                 <div className="content judger">
                     <div className="sidebar">
                         <h1 className="text text-primary">History</h1>
@@ -64,7 +64,7 @@ class JudgerPage extends Component {
                         </div>
                     </div>
                 </div>
-            </BorderlessPage>
+            </HeaderPage>
         );
     }
 }

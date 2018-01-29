@@ -1,0 +1,16 @@
+@import "../vars";
+
+.slider {
+  display: block;
+  margin: 30px 10px;
+  text-align: center;
+
+  .rc-slider-rail, .rc-slider-track {
+    height: 10px;
+  }
+
+  .rc-slider-handle {
+    height: 20px;
+    width: 20px;
+  }
+}

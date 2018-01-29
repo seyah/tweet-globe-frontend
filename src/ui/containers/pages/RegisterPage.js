@@ -4,9 +4,10 @@ import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import {push} from 'react-router-redux';
 import {register, displayAuthError, displayMessage} from '../../../reducers/authentication';
-import BorderPage from '../layouts/BorderPage';
 import '../../style/pages/RegisterPage.scss';
-import Link from '../../components/link/Link';
+import {LinkContainer} from "react-router-bootstrap";
+import HeaderPage from "../layouts/HeaderPage";
+import {Button, Col, Grid, Row} from "react-bootstrap";
 
 class RegisterPage extends Component {
 	constructor(props) {
@@ -37,21 +38,30 @@ class RegisterPage extends Component {
 		</div>;
 
 		return (
-			<BorderPage>
-				<div className="content">
-					<div className="register-box">
-						<span className="text text-primary bold">Please enter your details to log in:</span>
-						<div className="register-form">
-							<RegisterForm onSubmit={this.handleSubmit}/>
-							{this.props.authentication.message !== null && message}
-							{this.props.authentication.errorMessage !== null && errorMessage}
-							<span className="text text-primary hyper-link">
-								<Link link="/login" text="Already have an account?"/>
-							</span>
-						</div>
-					</div>
-				</div>
-			</BorderPage>
+			<HeaderPage centered>
+                {this.props.authentication.message !== null && message}
+                {this.props.authentication.errorMessage !== null && errorMessage}
+                <Grid fluid>
+                    <Row>
+                        <Col xs={12}>
+                            <span className="text text-primary bold">Please enter your details to register:</span>
+                        </Col>
+                    </Row>
+                    <br/>
+                    <Row>
+                        <Col xs={12}>
+                            <RegisterForm onSubmit={this.handleSubmit}/>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={12}>
+                            <LinkContainer to="/login">
+                                <a className="text text-primary hyper-link">Already have an account?</a>
+                            </LinkContainer>
+                        </Col>
+                    </Row>
+                </Grid>
+			</HeaderPage>
 		);
 	}
 }
@@ -114,8 +124,8 @@ let RegisterForm = props => {
 					component={renderField}
 					label="Confirm Password"/>
 			</div>
-			<div style={{textAlign: 'right'}}>
-				<button className="btn btn-primary" type="submit" disabled={pristine || submitting}>Submit</button>
+			<div>
+				<Button disabled={pristine || submitting} onClick={handleSubmit}>Submit</Button>
 			</div>
 		</form>
 	);

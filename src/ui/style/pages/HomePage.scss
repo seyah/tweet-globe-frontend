@@ -1,12 +1,12 @@
 @import "../vars";
 
 .splash {
+  .jumbotron {
+    background-color: transparent;
+    color: $TEXT_COLOUR;
 
-  .title {
-    font-size: 3em;
-  }
-
-  .subtitle {
-    font-size: 2em;
+    small {
+      color: darken($TEXT_COLOUR, 25);
+    }
   }
 }

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getUser} from '../../../reducers/authentication';
-import routes from '../../../router/routes';
 import './Page.scss';
 
 

@@ -1,17 +1,2 @@
 @import "../vars";
 
-.account-box {
-  width: 50%;
-  margin: 2em;
-  padding: 1.5em;
-  border: 1px solid $BLACK;
-  border-radius: $BORDER_RADIUS_SIZE;
-  background-color: rgba($PANEL_BACKGROUND, 0.8);
-  text-align: left;
-
-  .title {
-    text-align: left;
-    font-weight: 600;
-    margin: 0;
-  }
-}

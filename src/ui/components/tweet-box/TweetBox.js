@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import './TweetBox.scss';
+import {Media} from "react-bootstrap";
 
 class TweetBox extends Component {
     render() {
@@ -28,9 +29,14 @@ class TweetBox extends Component {
         return (
             <div className={"tweet-box " + className}>
                 <div className="tweet-content">
-                    <p>
-                        {result.map(a => a)}
-                    </p>
+                    <Media>
+                        <Media.Left>
+                            <i className="fa fa-2x fa-user-circle" />
+                        </Media.Left>
+                        <Media.Body>
+                            <p>{result.map(a => a)}</p>
+                        </Media.Body>
+                    </Media>
                 </div>
                 <div className="tweet-footer">
 					<span className="retweets">

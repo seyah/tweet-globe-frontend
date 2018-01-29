@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  color: $SPACE_GRAY;
 
   .tweet-content {
     flex: 1 1 auto;
@@ -18,6 +19,10 @@
     justify-content: flex-start;
     overflow-y: auto;
     overflow-x: hidden;
+
+    @media (max-width: 991px) {
+      font-size: 1em;
+    }
 
     p {
       margin: 0;
@@ -60,6 +65,10 @@
       margin-right: 1em;
       i {
         padding: 5px;
+      }
+
+      @media (max-width: 991px) {
+        font-size: 1em;
       }
     }
 

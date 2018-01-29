@@ -1,16 +1,114 @@
 @import "../vars";
 
-.slider {
-  display: block;
-  margin: 30px 10px;
-  text-align: center;
+.classification {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  .rc-slider-rail, .rc-slider-track {
-    height: 10px;
+  h2 {
+    text-align: center;
   }
 
-  .rc-slider-handle {
-    height: 20px;
-    width: 20px;
+  @media (max-width: 991px) {
+    border-bottom: 1px solid $SPACE_GRAY;
+  }
+
+  .categories {
+    text-align: center;
+    width: 100%;
+    h3 {
+      display: inline-block;
+      padding: 10px 5px;
+      box-sizing: border-box;
+    }
+  }
+
+  .emotion-controls {
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+
+    > div {
+      text-align: center;
+    }
+
+    .action-button {
+      align-self: center;
+      margin: 10px 0;
+    }
+  }
+
+  .tweet-view {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .tweet-box-preview {
+      margin: 0 0 15px;
+      font-size: 0.5em;
+      height: 15%;
+      width: 50%;
+      max-width: 500px;
+      opacity: 0.15;
+       pointer-events: none;
+
+      @media (max-width: 991px) {
+        display: none;
+      }
+    }
+
+    .tweet-box-container {
+      margin: 15px 0;
+      height: 40%;
+      width: 90%;
+      max-width: 800px;
+      transition: all .2s;
+
+      .tweet-box {
+        transition: all .2s;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.75);
+        opacity: 1;
+
+        &.done {
+          opacity: 0;
+        }
+      }
+    }
+  }
+}
+
+.preferences {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (min-width: 992px) {
+    border-left: 1px solid $SPACE_GRAY;
+  }
+
+  p {
+    width: 90%;
+  }
+
+  .slider {
+    margin: 40px 0;
+    text-align: center;
+    width: 70%;
+
+    .rc-slider-rail, .rc-slider-track {
+      height: 10px;
+    }
+
+    .rc-slider-dot {
+      height: 0;
+      width: 0;
+      visibility: hidden;
+    }
+
+    .rc-slider-handle {
+      height: 20px;
+      width: 20px;
+    }
   }
 }

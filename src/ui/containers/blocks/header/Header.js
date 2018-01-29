@@ -10,8 +10,7 @@ class Header extends Component {
         let {authentication} = this.props;
 
         let accountLinks = authentication.isAuthenticated && authentication.user !== null ? [
-            <Navbar.Text><span>Hi, {authentication.user.username}</span></Navbar.Text>,
-            <NavDropdown eventKey={1} title={<span>Account</span>} id="nav-account">
+            <NavDropdown eventKey={1} title={<span>{authentication.user.username}</span>} id="nav-account">
                 <LinkContainer to="/account"><MenuItem eventKey={1.1}>View Account</MenuItem></LinkContainer>
                 <MenuItem divider/>
                 <MenuItem eventKey={1.2} onClick={() => this.props.dispatch(logout())}>Logout</MenuItem>

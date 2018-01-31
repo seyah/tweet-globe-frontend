@@ -45,9 +45,9 @@ class PreferencesPage extends Component {
                                 This page allows you to train your recommendations to your own opinions. The
                                 Sentiment Trainer will present a random assortment of each of the categories to the
                                 right, at which point you will identify one of the following: (1) <span
-                                style={{color: '#ff2a27', fontWeight: 600}}>Negative (<i className="fa fa-thumbs-down"/>)</span> -
+                                style={{color: '#ff0100', fontWeight: 600}}>Negative (<i className="fa fa-thumbs-down"/>)</span> -
                                 You dislike this tweet and do not want to see more like this. (2) <span
-                                style={{color: '#af7d00', fontWeight: 600}}>No Opinion (<i
+                                style={{color: '#ffbd00', fontWeight: 600}}>No Opinion (<i
                                 className="fa fa-hand-stop-o"/>)</span> - You neither like nor dislike this tweet.
                                 (3) <span style={{color: '#15af00', fontWeight: 600}}>Positive (<i
                                 className="fa fa-thumbs-up"/>)</span> - You like this tweet and want to see more like
@@ -69,29 +69,25 @@ class PreferencesPage extends Component {
                                 </div>
                             </Row>
                             <div className="categories">
-                                {recommendations.scores.map(score => <h3><Label>{score.label}</Label></h3>)}
+                                {recommendations.scores.map(score => <h3><Label
+                                    bsStyle={mainTweet !== undefined && score.label.toLowerCase().indexOf(mainTweet['topic']) > -1 ? 'primary' : 'default'}>{score.label}</Label>
+                                </h3>)}
                             </div>
                             <Row className="emotion-controls">
-                                <Col xs={6} md={3}>
-                                    <ActionButton icon="fa-thumbs-down fa-3x" colour={'#af0100'}
+                                <Col xs={6} md={4}>
+                                    <ActionButton icon="fa-thumbs-down fa-3x" colour={'#ff0100'}
                                         //onClick={() => this.props.dispatch(judgeTweet(mainTweet, 'HATE'))}
                                     />
                                 </Col>
-                                <Col xs={6} md={3}>
-                                    <ActionButton icon="fa-hand-stop-o fa-3x" colour={'#af7d00'}
+                                <Col xs={6} md={4}>
+                                    <ActionButton icon="fa-hand-stop-o fa-3x" colour={'#ffbd00'}
                                         //onClick={() => this.props.dispatch(judgeTweet(mainTweet, 'EMPTY'))}
                                     />
                                 </Col>
 
-                                <Col xs={6} md={3}>
+                                <Col xs={6} md={4}>
                                     <ActionButton icon="fa-thumbs-up fa-3x" colour={'#15af00'}
                                         //onClick={() => this.props.dispatch(judgeTweet(mainTweet, 'LOVE'))}
-                                    />
-                                </Col>
-
-                                <Col xs={6} md={3}>
-                                    <ActionButton icon="fa-times fa-3x" colour={'#0100af'}
-                                        //onClick={() => this.props.dispatch(judgeTweet(mainTweet, 'NONE'))}
                                     />
                                 </Col>
                             </Row>

@@ -14,7 +14,7 @@ const initialState = {
     recommendations: {
         scores: []
     },
-    tweets: []
+    tweets: [{text: '', retweetCount: 0, favoriteCount: 0}]
 };
 
 // reducer

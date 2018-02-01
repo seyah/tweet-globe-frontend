@@ -29,6 +29,15 @@
       width: 100%;
       height: 100%;
       .tweet-hashtag {
+        color: $GLOWING_BLUE;
+        font-weight: 600;
+        text-decoration: none;
+        &:hover, &:active, &:focus {
+          text-decoration: underline;
+        }
+      }
+
+      .tweet-url {
         color: $BLUE;
         font-weight: 600;
         text-decoration: none;

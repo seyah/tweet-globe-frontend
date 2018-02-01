@@ -65,12 +65,14 @@ class PreferencesPage extends Component {
                                     {mainTweet !== undefined &&
                                     <TweetBox text={mainTweet.text}
                                               retweets={mainTweet['retweetCount']}
-                                              favourites={mainTweet['favoriteCount']}/>}
+                                              favourites={mainTweet['favoriteCount']}
+                                              profileImage={mainTweet['profileImage']}
+                                              user={mainTweet['user']}/>}
                                 </div>
                             </Row>
                             <div className="categories">
                                 {recommendations.scores.map(score => <h3><Label
-                                    bsStyle={mainTweet !== undefined && score.label.toLowerCase().indexOf(mainTweet['topic']) > -1 ? 'primary' : 'default'}>{score.label}</Label>
+                                    bsStyle={mainTweet !== undefined && score.label.toLowerCase().indexOf(mainTweet['topic']) > -1 ? 'success' : 'default'}>{score.label}</Label>
                                 </h3>)}
                             </div>
                             <Row className="emotion-controls">

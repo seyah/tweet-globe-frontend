@@ -46,6 +46,12 @@ class TrendsPage extends Component {
                                 {loadingTrendData === true &&
                                 <div className="empty-box"><i className="fa fa-5x fa-spin fa-cog"/></div>}
                                 {trendData !== undefined && trendData}
+                                <Row>
+                                    <h3>Summary</h3>
+                                    <div className="summary">
+
+                                    </div>
+                                </Row>
                             </div>
                         </Col>
                     </Row>

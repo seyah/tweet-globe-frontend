@@ -36,31 +36,35 @@ class PreferencesPage extends Component {
 
         return (
             <HeaderPage>
-                <Grid fluid>
+                <Grid>
                     <Row>
-                        <Col xs={12} md={8} bsClass="classification col">
+                        <Col xs={12} md={8} mdOffset={2} bsClass="classification col">
                             <h2>Sentiment Trainer</h2>
                             <br/>
-                            <p>
-                                This page allows you to train your recommendations to your own opinions. The
-                                Sentiment Trainer will present a random assortment of each of the categories to the
-                                right, at which point you will identify one of the following: (1) <span
-                                style={{color: '#ff0100', fontWeight: 600}}>Negative (<i className="fa fa-thumbs-down"/>)</span> -
-                                You dislike this tweet and do not want to see more like this. (2) <span
-                                style={{color: '#ffbd00', fontWeight: 600}}>No Opinion (<i
-                                className="fa fa-hand-stop-o"/>)</span> - You neither like nor dislike this tweet.
-                                (3) <span style={{color: '#15af00', fontWeight: 600}}>Positive (<i
-                                className="fa fa-thumbs-up"/>)</span> - You like this tweet and want to see more like
-                                this. (4) <span style={{color: '#6686ff', fontWeight: 600}}>Skip (<i
-                                className="fa fa-thumbs-up"/>)</span> - Skip the current tweet.
-                            </p>
+                            <Row>
+                                <Col xs={12} md={12}>
+                                    <p>
+                                        This page allows you to train your recommendations to your own opinions. The
+                                        Sentiment Trainer will present a random assortment of each of the categories to
+                                        the right, at which point you will identify one of the following: (1) <span
+                                        style={{color: '#ff0100', fontWeight: 600}}>Negative (<i
+                                        className="fa fa-thumbs-down"/>)</span> - You dislike this tweet and do not want
+                                        to see more like this. (2) <span style={{color: '#ffbd00', fontWeight: 600}}>No Opinion (<i
+                                        className="fa fa-hand-stop-o"/>)</span> - You neither like nor dislike this
+                                        tweet. (3) <span style={{color: '#15af00', fontWeight: 600}}>Positive (<i
+                                        className="fa fa-thumbs-up"/>)</span> - You like this tweet and want to see more
+                                        like this.
+                                    </p>
+                                </Col>
+                            </Row>
+                            <br/>
                             <Row className="tweet-view">
-                                {/*<div className="tweet-box-preview">
+                                <div className="tweet-box-preview">
                                     {nextTweet !== undefined &&
                                     <TweetBox text={nextTweet.text}
                                               retweets={nextTweet['retweetCount']}
                                               favourites={nextTweet['favoriteCount']}/>}
-                                </div>*/}
+                                </div>
                                 <div className="tweet-box-container">
                                     {mainTweet !== undefined &&
                                     <TweetBox text={mainTweet.text}
@@ -71,9 +75,9 @@ class PreferencesPage extends Component {
                                 </div>
                             </Row>
                             <div className="categories">
-                                {recommendations.scores.map(score => <h3><Label
+                                {recommendations.scores.map(score => <h4><Label
                                     bsStyle={mainTweet !== undefined && score.label.toLowerCase().indexOf(mainTweet['topic']) > -1 ? 'success' : 'default'}>{score.label}</Label>
-                                </h3>)}
+                                </h4>)}
                             </div>
                             <Row className="emotion-controls">
                                 <Col xs={6} md={4}>
@@ -94,7 +98,7 @@ class PreferencesPage extends Component {
                                 </Col>
                             </Row>
                         </Col>
-                        <Col xs={12} md={4} bsClass="preferences col">
+                        {/*<Col xs={12} md={4} bsClass="preferences col">
                             <h2>Preferences Scale</h2>
                             <br/>
                             <p>
@@ -123,7 +127,7 @@ class PreferencesPage extends Component {
                                             onAfterChange={(i) => this.updateScore(score, i)}/>
                                 </div>
                             })}
-                        </Col>
+                        </Col>*/}
                     </Row>
                 </Grid>
             </HeaderPage>

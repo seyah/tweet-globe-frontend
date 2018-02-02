@@ -13,7 +13,6 @@
 
   .tweet-content {
     flex: 1 1 auto;
-    font-size: 2em;
     padding: 15px;
     display: flex;
     justify-content: flex-start;
@@ -65,7 +64,6 @@
     overflow-x: hidden;
 
     .retweets, .favourites {
-      font-size: 1.5em;
       float: left;
       transition: color 0.4s;
       cursor: pointer;

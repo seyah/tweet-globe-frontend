@@ -1,0 +1,54 @@
+@import "../vars";
+
+.trends {
+  background-color: $DARK_WHITE;
+  border-radius: 15px;
+  margin: 10px;
+  padding: 10px;
+  color: $SPACE_GRAY;
+
+  h2 {
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .trend {
+    display: block;
+    margin: 10px;
+    color: $BLUE;
+    font-weight: bold;
+
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
+
+.trend-data {
+  background-color: $DARK_WHITE;
+  border-radius: 15px;
+  margin: 10px;
+  padding: 10px;
+  color: $SPACE_GRAY;
+  min-height: 500px;
+
+  &.empty {
+    display: flex;
+    flex-direction: column;
+    //justify-content: center;
+    align-items: center;
+
+    .empty-box {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  h2 {
+    text-align: center;
+    margin: 20px 0;
+    //justify-self: flex-start;
+  }
+}

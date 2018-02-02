@@ -16,7 +16,7 @@
   .categories {
     text-align: center;
     width: 100%;
-    h3 {
+    h4 {
       display: inline-block;
       padding: 10px 5px;
       box-sizing: border-box;
@@ -26,7 +26,10 @@
   .emotion-controls {
     padding: 20px;
     box-sizing: border-box;
-    width: 100%;
+
+    @media (min-width: 992px) {
+      width: 60%;
+    }
 
     > div {
       text-align: center;
@@ -51,7 +54,7 @@
       width: 50%;
       max-width: 500px;
       opacity: 0.15;
-       pointer-events: none;
+      pointer-events: none;
 
       @media (max-width: 991px) {
         display: none;
@@ -61,7 +64,7 @@
     .tweet-box-container {
       margin: 15px 0;
       height: 40%;
-      width: 90%;
+      width: 70%;
       max-width: 800px;
       transition: all .2s;
 
@@ -85,10 +88,6 @@
 
   @media (min-width: 992px) {
     border-left: 1px solid $SPACE_GRAY;
-  }
-
-  p {
-    width: 90%;
   }
 
   .slider {

@@ -4,7 +4,7 @@ import HeaderPage from "../layouts/HeaderPage";
 import {connect} from "react-redux";
 import {Col, Grid, Row} from "react-bootstrap";
 import {getTrendData, getTrends} from "../../../reducers/trends";
-import {Pie, PieChart, Tooltip} from "recharts";
+import {Cell, Pie, PieChart, Tooltip} from "recharts";
 
 class TrendsPage extends Component {
 
@@ -31,7 +31,8 @@ class TrendsPage extends Component {
             sentimentData = names.map(name => {
                 return {
                     name: name,
-                    value: trendData.filter(tweet => tweet.sentiment.name.indexOf(name) > -1).length
+                    value: trendData.filter(tweet => tweet.sentiment.name.indexOf(name) > -1).length,
+                    colour: name === "positive" ? "#11ff00" : "#fff"
                 }
             })
         }
@@ -72,9 +73,14 @@ class TrendsPage extends Component {
                                         <div className="summary">
                                             <PieChart width={800} height={400}>
                                                 <Pie isAnimationActive={false} data={sentimentData} cx={200} cy={200}
-                                                     outerRadius={80} fill="#8884d8" label/>
+                                                     outerRadius={80} fill="#8884d8" label>
+                                                    {sentimentData.map((entry, index) => {
+                                                        return <Cell key={'cell-' + index} fill={entry['colour']}/>
+                                                    })}
+                                                </Pie>
                                                 <Pie data={data02} cx={500} cy={200} innerRadius={40} outerRadius={80}
-                                                     fill="#82ca9d"/>
+                                                     fill="#82ca9d">
+                                                </Pie>
                                                 <Tooltip/>
                                             </PieChart>
                                         </div>

@@ -3,21 +3,21 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {MenuItem, Nav, Navbar, NavDropdown, NavItem} from "react-bootstrap";
 import {IndexLinkContainer, LinkContainer} from "react-router-bootstrap";
-import {logout} from "../../../../reducers/authentication";
+import {logout} from "../../../reducers/authentication";
 
 class Header extends Component {
     render() {
         let {authentication} = this.props;
 
         let accountLinks = authentication.isAuthenticated && authentication.user !== null ? [
-            <NavDropdown eventKey={1} title={<span>{authentication.user.username}</span>} id="nav-account">
-                <LinkContainer to="/account"><MenuItem eventKey={1.1}>View Account</MenuItem></LinkContainer>
-                <MenuItem divider/>
-                <MenuItem eventKey={1.2} onClick={() => this.props.dispatch(logout())}>Logout</MenuItem>
+            <NavDropdown key={1} title={<span>{authentication.user.username}</span>} id="nav-account">
+                <LinkContainer key={1.3} to="/account"><MenuItem eventKey={1.1}>View Account</MenuItem></LinkContainer>
+                <MenuItem key={1.1} divider/>
+                <MenuItem key={1.2} onClick={() => this.props.dispatch(logout())}>Logout</MenuItem>
             </NavDropdown>
         ] : [
-            <LinkContainer to="/login"><NavItem>Login</NavItem></LinkContainer>,
-            <LinkContainer to="/register"><NavItem>Register</NavItem></LinkContainer>
+            <LinkContainer eventKey={1} to="/login"><NavItem>Login</NavItem></LinkContainer>,
+            <LinkContainer eventKey={2} to="/register"><NavItem>Register</NavItem></LinkContainer>
         ];
 
         return (
@@ -34,6 +34,7 @@ class Header extends Component {
                         <LinkContainer to="/preferences"><NavItem>Preferences</NavItem></LinkContainer>
                         <LinkContainer to="/recommendations"><NavItem>Recommendations</NavItem></LinkContainer>
                         <LinkContainer to="/trends"><NavItem>Trends</NavItem></LinkContainer>
+                        <LinkContainer to="/user-analysis"><NavItem>User Analysis</NavItem></LinkContainer>
                     </Nav>
                     <Nav pullRight>
                         {accountLinks}

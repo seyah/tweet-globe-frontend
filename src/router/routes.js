@@ -10,6 +10,7 @@ import Page from "../ui/containers/layouts/Page";
 import AnonymousRoute from "./AnonymousRoute";
 import PreferencesPage from "../ui/containers/pages/PreferencesPage";
 import TrendsPage from "../ui/containers/pages/TrendsPage";
+import UserAnalysisPage from "../ui/containers/pages/UserAnalysisPage";
 
 const instance = axios.create({
     // TODO Assign URL of API
@@ -28,8 +29,9 @@ export default () => {
             <AnonymousRoute key={-1} path="/login" onEnter={scrollToTop} render={() => <LoginPage/>}/>
             <AnonymousRoute key={-2} path="/register" onEnter={scrollToTop} render={() => <RegisterPage/>}/>
             <AuthenticatedRoute key={1} path="/account" onEnter={scrollToTop} render={() => <AccountPage/>}/>
-            <AuthenticatedRoute key={3} path="/preferences" onEnter={scrollToTop} render={() => <PreferencesPage/>}/>
+            <AuthenticatedRoute key={2} path="/preferences" onEnter={scrollToTop} render={() => <PreferencesPage/>}/>
             <AuthenticatedRoute key={3} path="/trends" onEnter={scrollToTop} render={() => <TrendsPage/>}/>
+            <AuthenticatedRoute key={4} path="/user-analysis" onEnter={scrollToTop} render={() => <UserAnalysisPage/>}/>
         </Page>
     );
 };

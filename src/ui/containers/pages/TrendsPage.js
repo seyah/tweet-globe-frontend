@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import "../../style/pages/TrendsPage.scss";
 import HeaderPage from "../layouts/HeaderPage";
 import {connect} from "react-redux";
@@ -356,9 +357,12 @@ class TrendsPage extends Component {
     }
 }
 
-TrendsPage.propTypes = {
-    trends: [],
+TrendsPage.defaultProps = {
+    trends: {},
+};
 
+TrendsPage.propTypes = {
+    trends: PropTypes.object
 };
 
 let mapStateToProps = (state) => {

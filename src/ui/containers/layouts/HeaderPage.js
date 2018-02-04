@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import './Page.scss';
-import Header from '../blocks/header/Header';
+import Header from '../../components/header/Header';
 
 class HeaderPage extends Component {
 	render() {
 		return ([
-            <Header/>,
-			<div className={"header-page" + (this.props.centered ? " centered" : "")}>
+            <Header key={0}/>,
+			<div key={1} className={"header-page" + (this.props.centered ? " centered" : "")}>
 				{this.props.children}
 			</div>
 		]);

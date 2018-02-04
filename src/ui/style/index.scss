@@ -33,10 +33,10 @@ html, body {
 
 .text {
   color: $TEXT_COLOUR;
+}
 
-  &.bold {
-    font-weight: 600;
-  }
+.bold {
+  font-weight: 600;
 }
 
 .auth-message {
@@ -65,4 +65,12 @@ html, body {
     right: 2px;
     cursor: pointer;
   }
+}
+
+*[id]:before {
+  display: block;
+  content: " ";
+  margin-top: -75px;
+  height: 75px;
+  visibility: hidden;
 }

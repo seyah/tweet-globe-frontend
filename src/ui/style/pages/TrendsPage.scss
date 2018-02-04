@@ -1,5 +1,15 @@
 @import "../vars";
 
+h2, h3, h4 {
+  text-align: center;
+  margin: 20px 0;
+  font-weight: 600;
+}
+
+h3, h4 {
+  text-decoration: underline;
+}
+
 .trends {
   background-color: $DARK_WHITE;
   border-radius: 15px;
@@ -7,20 +17,21 @@
   padding: 10px;
   color: $SPACE_GRAY;
 
-  h2 {
-    text-align: center;
-    margin: 20px 0;
-  }
+  .trends-list {
+    overflow: auto;
+    max-height: 600px;
 
-  .trend {
-    display: block;
-    margin: 10px;
-    color: $BLUE;
-    font-weight: bold;
+    .trend {
+      display: block;
+      margin: 10px;
+      color: $BLUE;
+      font-weight: bold;
+      word-break: break-all;
 
-    &:hover {
-      text-decoration: underline;
-      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
     }
   }
 }
@@ -32,6 +43,13 @@
   padding: 15px;
   color: $SPACE_GRAY;
   min-height: 500px;
+  overflow: auto;
+
+  .container-fluid {
+    @media(min-width: 1200px) {
+      margin: 0 80px;
+    }
+  }
 
   &.empty {
     display: flex;

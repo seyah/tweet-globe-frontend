@@ -26,7 +26,8 @@ export default function reducer(state = initialState, action) {
         case GET_TREND_DATA:
             return {
                 ...state,
-                loadingTrendData: true
+                loadingTrendData: true,
+                trendData: []
             };
         case GET_TREND_DATA_SUCCESS:
             return {

@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const axe = axios.create({
 	baseURL: '//127.0.0.1:8081',
+	timeout: 100000
 });
 
 const setupAxiosInterceptors = onUnauthenticated => {
@@ -10,7 +11,7 @@ const setupAxiosInterceptors = onUnauthenticated => {
 		if (token) {
 			config.headers['Authorization'] = 'Bearer ' + token;
 		}
-		config.timeout = 10000;
+		config.timeout = 100000;
 		return config;
 	};
 	const onResponseSuccess = response => response;

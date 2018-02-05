@@ -3,7 +3,7 @@ const GET_USER_TWEETS_SUCCESS = 'twitter/GET_USER_TWEETS_SUCCESS';
 const GET_USER_TWEETS_FAIL = 'twitter/GET_USER_TWEETS_FAIL';
 
 const initialState = {
-
+    userData: []
 };
 
 // reducer
@@ -13,7 +13,10 @@ export default function reducer(state = initialState, action) {
         case GET_USER_TWEETS:
             return state;
         case GET_USER_TWEETS_SUCCESS:
-            return state;
+            return {
+                ...state,
+                userData: action.result.data
+            };
         default:
             return state;
     }

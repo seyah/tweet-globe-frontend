@@ -28,7 +28,7 @@ class TrendsPage extends Component {
     }
 
     render() {
-        let {userData} = this.props;
+        let {userData, loadingUserData} = this.props.data;
 
         let sentimentData, topicData;
         if (userData.length > 1) {
@@ -74,17 +74,23 @@ class TrendsPage extends Component {
                         <UserSearchForm onSubmit={this.handleSubmit}/>
                     </Row>
                     <br/>
+                    {loadingUserData &&
                     <Row>
-                        <Col xs={12} md={4} mdOffset={4}>
-                            <h3>{this.state.name}</h3>
+                        <Col xs={12}>
+                            <i className="fa fa-5x fa-spin fa-cog" style={{textAlign: "center", width: "100%"}}/>
                         </Col>
-                    </Row>
+                    </Row>}
                     {userData !== undefined && userData.length > 1 &&
                     [<Row>
-                        <Col xs={12} md={10} mdOffset={1}>
-
+                        <Col xs={12} md={4} mdOffset={4}>
+                            <h3>Screen Name: {this.state.name}</h3>
                         </Col>
                     </Row>,
+                        <Row>
+                            <Col xs={12} md={10} mdOffset={1}>
+
+                            </Col>
+                        </Row>,
                         <Row>
                             <Col xs={12} md={4} mdOffset={2}>
                                 <h4 style={{textAlign: "center"}}>Sentiment Analysis</h4>
@@ -153,12 +159,12 @@ UserSearchForm = reduxForm({
 })(UserSearchForm);
 
 TrendsPage.defaultProps = {
-    userData: [],
+    data: {},
 };
 
 let mapStateToProps = (state) => {
     return {
-        userData: state.twitter.userData
+        data: state.twitter
     }
 };
 

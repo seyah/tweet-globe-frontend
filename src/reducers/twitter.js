@@ -3,7 +3,8 @@ const GET_USER_TWEETS_SUCCESS = 'twitter/GET_USER_TWEETS_SUCCESS';
 const GET_USER_TWEETS_FAIL = 'twitter/GET_USER_TWEETS_FAIL';
 
 const initialState = {
-    userData: []
+    userData: [],
+    loadingUserData: undefined
 };
 
 // reducer
@@ -11,11 +12,21 @@ const initialState = {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case GET_USER_TWEETS:
-            return state;
+            return {
+                ...state,
+                userData: [],
+                loadingUserData: true
+            };
         case GET_USER_TWEETS_SUCCESS:
             return {
                 ...state,
-                userData: action.result.data
+                userData: action.result.data,
+                loadingUserData: false
+            };
+        case GET_USER_TWEETS_FAIL:
+            return {
+                ...state,
+                loadingUserData: false
             };
         default:
             return state;

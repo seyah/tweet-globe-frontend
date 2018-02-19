@@ -111,9 +111,9 @@ class TrendsPage extends Component {
             <HeaderPage>
                 <Grid fluid>
                     <Row>
-                        <Col xs={12} md={3} lg={2}>
+                        <Col xs={12} md={4} lg={3}>
                             <div className="trends">
-                                <h2>Trends</h2>
+                                <h2>Trending Tweets</h2>
                                 <div className="trends-list">
                                     {trends.map(trend =>
                                         <span key={trend['name']} className="trend"
@@ -122,7 +122,7 @@ class TrendsPage extends Component {
                                 </div>
                             </div>
                         </Col>
-                        <Col xs={12} md={9} lg={10}>
+                        <Col xs={12} md={8} lg={9}>
                             <div
                                 className={"trend-data" + (loadingTrendData === undefined || loadingTrendData ? " empty" : "")}>
                                 <h2>Trend Statistics</h2>
@@ -140,7 +140,7 @@ class TrendsPage extends Component {
                                                 href="#trend-tweets">Tweets Analysis</a>
                                             </p>
                                             <p>
-                                                This document breaks down the 100 most recent tweets based on
+                                                This document breaks down the 500 most recent tweets based on
                                                 the selected or searched term. It provides a high level summary of
                                                 sentiment analysis and topic classification, with a further breakdown
                                                 available for each tweet used in the analysis. The content of each tweet

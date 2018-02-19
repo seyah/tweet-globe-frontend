@@ -7,7 +7,7 @@ import {Field, reduxForm} from "redux-form";
 import {getUserTweets} from "../../../reducers/twitter";
 import {Cell, Label, Legend, Pie, PieChart, ResponsiveContainer, Tooltip} from "recharts";
 
-class TrendsPage extends Component {
+class UserAnalysisPage extends Component {
 
     constructor(props) {
         super(props);
@@ -158,7 +158,7 @@ UserSearchForm = reduxForm({
     form: 'user-search'
 })(UserSearchForm);
 
-TrendsPage.defaultProps = {
+UserAnalysisPage.defaultProps = {
     data: {},
 };
 
@@ -168,4 +168,4 @@ let mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps)(TrendsPage);
+export default connect(mapStateToProps)(UserAnalysisPage);

@@ -5,7 +5,7 @@ import {Image, Media, OverlayTrigger, Tooltip} from "react-bootstrap";
 
 class TweetBox extends Component {
     render() {
-        let {text, retweets, favourites, profileImage, user, className} = this.props;
+        let {text, retweets, favourites, profileImage, user, className, extra} = this.props;
 
         let formattedText = text.split(' ');
         formattedText = formattedText.map((word, index) => {
@@ -40,7 +40,7 @@ class TweetBox extends Component {
                                 {profileImage !== undefined ?
                                 <a href={"http://twitter.com/" + user}><Image src={profileImage} circle /></a>
                                 :
-                                <i className="fa fa-2x fa-user-circle"/>}
+                                <i className="fas fa-2x fa-user-circle"/>}
                             </OverlayTrigger>
                         </Media.Left>
                         <Media.Body>
@@ -50,13 +50,14 @@ class TweetBox extends Component {
                 </div>
                 <div className="tweet-footer">
 					<span className="retweets">
-						<i className="fa fa-exchange"/>
+						<i className="fas fa-exchange-alt"/>
                         {retweets}
 					</span>
                     <span className="favourites">
-						<i className="fa fa-star"/>
+						<i className="fas fa-star"/>
                         {favourites}
 					</span>
+                    {extra.map(a => {a})}
                 </div>
             </div>
         );
@@ -69,7 +70,8 @@ TweetBox.defaultProps = {
     favourites: 0,
     profileImage: undefined,
     user: "",
-    className: ""
+    className: "",
+    extra: []
 };
 
 TweetBox.propTypes = {
@@ -78,7 +80,8 @@ TweetBox.propTypes = {
     favourites: PropTypes.number,
     profileImage: PropTypes.string,
     user: PropTypes.string,
-    className: PropTypes.string
+    className: PropTypes.string,
+    extra: PropTypes.array
 };
 
 export default TweetBox;

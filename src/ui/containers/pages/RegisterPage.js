@@ -125,7 +125,7 @@ let RegisterForm = props => {
 					label="Confirm Password"/>
 			</div>
 			<div>
-				<Button disabled={pristine || submitting} onClick={handleSubmit}>Submit</Button>
+				<Button bsStyle="primary" disabled={pristine || submitting} onClick={handleSubmit}>Submit</Button>
 			</div>
 		</form>
 	);

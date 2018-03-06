@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {Col, Grid, Label, Row} from "react-bootstrap";
 import Slider from "rc-slider";
 import 'rc-slider/assets/index.css';
-import {getScores, getTrainingTweet, updateScore} from "../../../reducers/recommender";
+import {getScores, getTrainingTweet, judgeTweet, updateScore} from "../../../reducers/recommender";
 import TweetBox from "../../components/tweet-box/TweetBox";
 import ActionButton from "../../components/actionButton/ActionButton";
 
@@ -18,8 +18,6 @@ class PreferencesPage extends Component {
     }
 
     componentWillMount() {
-        this.props.dispatch(getScores());
-        this.props.dispatch(getTrainingTweet());
         this.props.dispatch(getTrainingTweet());
     }
 
@@ -39,7 +37,7 @@ class PreferencesPage extends Component {
                 <Grid>
                     <Row>
                         <Col xs={12} md={8} mdOffset={2} bsClass="classification col">
-                            <h2>Sentiment Trainer</h2>
+                            <h2>Preferences Trainer</h2>
                             <br/>
                             <Row>
                                 <Col xs={12} md={12}>
@@ -48,52 +46,63 @@ class PreferencesPage extends Component {
                                         Sentiment Trainer will present a random assortment of each of the categories to
                                         the right, at which point you will identify one of the following: (1) <span
                                         style={{color: '#ff0100', fontWeight: 600}}>Negative (<i
-                                        className="fa fa-thumbs-down"/>)</span> - You dislike this tweet and do not want
+                                        className="fas fa-thumbs-down"/>)</span> - You dislike this tweet and do not
+                                        want
                                         to see more like this. (2) <span style={{color: '#ffbd00', fontWeight: 600}}>No Opinion (<i
-                                        className="fa fa-hand-stop-o"/>)</span> - You neither like nor dislike this
+                                        className="fas fa-hand-paper"/>)</span> - You neither like nor dislike this
                                         tweet. (3) <span style={{color: '#15af00', fontWeight: 600}}>Positive (<i
-                                        className="fa fa-thumbs-up"/>)</span> - You like this tweet and want to see more
+                                        className="fas fa-thumbs-up"/>)</span> - You like this tweet and want to see
+                                        more
                                         like this.
                                     </p>
                                 </Col>
                             </Row>
                             <br/>
-                            <Row className="tweet-view">
-                                <div className="tweet-box-preview">
-                                    {nextTweet !== undefined &&
-                                    <TweetBox text={nextTweet.text}
-                                              retweets={nextTweet['retweetCount']}
-                                              favourites={nextTweet['favoriteCount']}/>}
-                                </div>
-                                <div className="tweet-box-container">
-                                    {mainTweet !== undefined &&
-                                    <TweetBox text={mainTweet.text}
-                                              retweets={mainTweet['retweetCount']}
-                                              favourites={mainTweet['favoriteCount']}
-                                              profileImage={mainTweet['profileImage']}
-                                              user={mainTweet['user']}/>}
-                                </div>
+                            <Row>
+                                <Col xs={12} md={12}>
+                                    <div className="tweet-box-container">
+                                        {mainTweet !== undefined &&
+                                        [<TweetBox text={mainTweet.text}
+                                                   retweets={mainTweet['retweetCount']}
+                                                   favourites={mainTweet['favoriteCount']}
+                                                   profileImage={mainTweet['profileImage']}
+                                                   user={mainTweet['user']}
+                                                   extra={[<Label bsStyle="primary">{mainTweet['topic']}</Label>]}/>,
+                                        ]}
+                                    </div>
+                                </Col>
                             </Row>
-                            <div className="categories">
-                                {recommendations.scores.map(score => <h4><Label
-                                    bsStyle={mainTweet !== undefined && score.label.toLowerCase().indexOf(mainTweet['topic']) > -1 ? 'success' : 'default'}>{score.label}</Label>
-                                </h4>)}
-                            </div>
-                            <Row className="emotion-controls">
-                                <Col xs={6} md={4}>
-                                    <ActionButton icon="fa-thumbs-down fa-3x" colour={'#ff0100'}
-                                        //onClick={() => this.props.dispatch(judgeTweet(mainTweet, 'HATE'))}
+                            <br/>
+                            <br/>
+                            <Row>
+                                <Col xs={6} md={3} style={{textAlign: 'center', display: mainTweet !== undefined && mainTweet['sentiment'] === 'positive' ? 'block' : 'none'}}>
+                                    <div style={{display: mainTweet !== undefined && mainTweet['sentiment'] === 'positive' ? 'block' : 'none'}}>
+                                        <span className="fas fa-smile fa-6x" style={{color: '#1ad600'}}/>
+                                    </div>
+                                </Col>
+                                <Col xs={6} md={3} style={{textAlign: 'center', display: mainTweet !== undefined && mainTweet['sentiment'] === 'mixed' ? 'block' : 'none'}}>
+                                    <div style={{display: mainTweet !== undefined && mainTweet['sentiment'] === 'mixed' ? 'block' : 'none'}}>
+                                        <span className="fas fa-meh fa-6x" style={{color: '#ffbd00'}}/>
+                                    </div>
+                                </Col>
+                                <Col xs={6} md={3} style={{textAlign: 'center', display: mainTweet !== undefined && mainTweet['sentiment'] === 'negative' ? 'block' : 'none'}}>
+                                    <div style={{display: mainTweet !== undefined && mainTweet['sentiment'] === 'negative' ? 'block' : 'none'}}>
+                                        <span className="fas fa-frown fa-6x" style={{color: '#ff0100'}}/>
+                                    </div>
+                                </Col>
+                                <Col xs={6} md={3}>
+                                    <ActionButton icon="fas fa-thumbs-down fa-3x" colour={'#ff0100'}
+                                                  onClick={() => this.props.dispatch(judgeTweet(mainTweet, -1, mainTweet['sentiment']))}
                                     />
                                 </Col>
-                                <Col xs={6} md={4}>
-                                    <ActionButton icon="fa-hand-stop-o fa-3x" colour={'#ffbd00'}
-                                        //onClick={() => this.props.dispatch(judgeTweet(mainTweet, 'EMPTY'))}
+                                <Col xs={6} md={3}>
+                                    <ActionButton icon="fas fa-hand-paper fa-3x" colour={'#ffbd00'}
+                                                  onClick={() => this.props.dispatch(judgeTweet(mainTweet, 0, mainTweet['sentiment']))}
                                     />
                                 </Col>
-
-                                <Col xs={6} md={4}>
-                                    <ActionButton icon="fa-thumbs-up fa-3x" colour={'#15af00'}
-                                        //onClick={() => this.props.dispatch(judgeTweet(mainTweet, 'LOVE'))}
+                                <Col xs={6} md={3}>
+                                    <ActionButton icon="fas fa-thumbs-up fa-3x" colour={'#15af00'}
+                                                  onClick={() => this.props.dispatch(judgeTweet(mainTweet, 1, mainTweet['sentiment']))}
                                     />
                                 </Col>
                             </Row>

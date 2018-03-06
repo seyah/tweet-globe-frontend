@@ -1,6 +1,6 @@
 @import "../../style/vars";
 
-.tweet-box {
+.tweet-box, .tweet-tiny-box {
   background-color: $WHITE;
   border-radius: 5px;
   border: 1px solid darken($WHITE, 5);
@@ -49,6 +49,12 @@
         color: $DARK_GREEN;
         font-weight: 600;
       }
+
+      &.tiny-info {
+        * {
+          padding: 0 5px;
+        }
+      }
     }
   }
 
@@ -86,5 +92,21 @@
     .favourites:hover {
       color: $GOLD;
     }
+  }
+}
+
+.tweet-tiny-box {
+  background-color: $WHITE;
+  border-radius: 5px;
+  border: 1px solid darken($WHITE, 5);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  color: $SPACE_GRAY;
+
+  .tweet-content {
+    padding: 2px;
   }
 }

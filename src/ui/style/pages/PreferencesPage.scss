@@ -22,63 +22,6 @@
       box-sizing: border-box;
     }
   }
-
-  .emotion-controls {
-    padding: 20px;
-    box-sizing: border-box;
-
-    @media (min-width: 992px) {
-      width: 60%;
-    }
-
-    > div {
-      text-align: center;
-    }
-
-    .action-button {
-      align-self: center;
-      margin: 10px 0;
-    }
-  }
-
-  .tweet-view {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    .tweet-box-preview {
-      margin: 0 0 15px;
-      font-size: 0.5em;
-      height: 15%;
-      width: 50%;
-      max-width: 500px;
-      opacity: 0.15;
-      pointer-events: none;
-
-      @media (max-width: 991px) {
-        display: none;
-      }
-    }
-
-    .tweet-box-container {
-      margin: 15px 0;
-      height: 40%;
-      width: 70%;
-      max-width: 800px;
-      transition: all .2s;
-
-      .tweet-box {
-        transition: all .2s;
-        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.75);
-        opacity: 1;
-
-        &.done {
-          opacity: 0;
-        }
-      }
-    }
-  }
 }
 
 .preferences {

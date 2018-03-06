@@ -4,20 +4,41 @@
   display: inline-block;
   border-radius: 100%;
   padding: 1.5em;
+  margin: 0 1.5em;
   transition: 0.4s;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.75);
 
-  i {
+  &.tiny {
+    border-radius: 100%;
+    padding: 0.2em;
+    margin: 0.2em;
+  }
+
+  svg {
     transition: 0.4s;
   }
 
   &.hover, &:hover {
     cursor: pointer;
-    i {
+    svg {
       box-shadow: none;
 	  color: $WHITE;
       &.invert {
         color: $BLACK;
+      }
+    }
+  }
+
+  &.disabled {
+    opacity: 0.6;
+    &.hover, &:hover {
+      cursor: not-allowed;
+      svg {
+        box-shadow: none;
+        color: $WHITE;
+        &.invert {
+          color: $BLACK;
+        }
       }
     }
   }

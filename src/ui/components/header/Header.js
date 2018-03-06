@@ -35,6 +35,7 @@ class Header extends Component {
                         <LinkContainer to="/recommendations"><NavItem>Recommendations</NavItem></LinkContainer>
                         <LinkContainer to="/trends"><NavItem>Trends</NavItem></LinkContainer>
                         <LinkContainer to="/user-analysis"><NavItem>User Analysis</NavItem></LinkContainer>
+                        <LinkContainer to="/live"><NavItem>Live Analysis</NavItem></LinkContainer>
                     </Nav>
                     <Nav pullRight>
                         {accountLinks}

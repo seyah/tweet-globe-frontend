@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import "../../style/pages/TrendsPage.scss";
 import HeaderPage from "../layouts/HeaderPage";
 import {connect} from "react-redux";
-import {Col, Grid, Panel, Row} from "react-bootstrap";
+import {Button, Col, Grid, Panel, Row} from "react-bootstrap";
 import {getTrendData, getTrends} from "../../../reducers/trends";
 import {
     Bar,
@@ -18,6 +18,10 @@ import {
     Tooltip,
     XAxis, YAxis
 } from "recharts";
+import ActionButton from "../../components/actionButton/ActionButton";
+import {judgeTweetExternal} from "../../../reducers/recommender";
+import {Field, reduxForm} from "redux-form";
+import {login} from "../../../reducers/authentication";
 
 class TrendsPage extends Component {
 
@@ -25,6 +29,9 @@ class TrendsPage extends Component {
         super(props);
 
         this.getTrendData = this.getTrendData.bind(this);
+        this.getSearchedTrendData = this.getSearchedTrendData.bind(this);
+        this.judgeTweet = this.judgeTweet.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
 
         this.state = {
             trend: ""
@@ -41,6 +48,22 @@ class TrendsPage extends Component {
             ...this.state,
             trend: trend['name']
         });
+    }
+
+    getSearchedTrendData(trend) {
+        this.props.dispatch(getTrendData(encodeURI(trend)));
+        this.setState({
+            ...this.state,
+            trend: trend
+        });
+    }
+
+    judgeTweet(tweet, action) {
+        this.props.dispatch(judgeTweetExternal(tweet, action))
+    }
+
+    handleSubmit(formProps) {
+        this.getSearchedTrendData(formProps['search']);
     }
 
     render() {
@@ -120,6 +143,7 @@ class TrendsPage extends Component {
                                               onClick={() => this.getTrendData(trend)}>{trend['name']}</span>
                                     )}
                                 </div>
+                                <SearchForm onSubmit={this.handleSubmit}/>
                             </div>
                         </Col>
                         <Col xs={12} md={8} lg={9}>
@@ -313,9 +337,7 @@ class TrendsPage extends Component {
                                                         <Panel.Collapse>
                                                             <Panel.Body>
                                                                 <p>
-                                                            <span className="bold">
-                                                                @{tweet['user']}:
-                                                            </span>
+                                                                    <span className="bold">@{tweet['user']}:</span>
                                                                     {tweet['text']}
                                                                 </p>
                                                                 <ResponsiveContainer width="100%" height={200}>
@@ -356,6 +378,28 @@ class TrendsPage extends Component {
         );
     }
 }
+
+let SearchForm = props => {
+    // eslint-disable-next-line react/prop-types
+    const {pristine, submitting, handleSubmit} = props;
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <div className="field">
+                <Field name="search" component="input" type="text" placeholder="Search for a trend..."/>
+            </div>
+            <div>
+                <Button bsStyle="primary" disabled={pristine || submitting} onClick={handleSubmit}>
+                    Submit
+                </Button>
+            </div>
+        </form>
+    );
+};
+
+SearchForm = reduxForm({
+    form: 'trend-search'
+})(SearchForm);
 
 TrendsPage.defaultProps = {
     trends: {},

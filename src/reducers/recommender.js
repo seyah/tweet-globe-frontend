@@ -1,76 +1,94 @@
-const GET_SCORES = 'recommender/GET_SCORES';
-const GET_SCORES_SUCCESS = 'recommender/GET_SCORES_SUCCESS';
-const GET_SCORES_FAIL = 'recommender/GET_SCORES_FAIL';
+const JUDGE_TWEET = 'recommender/JUDGE_TWEET';
+const JUDGE_TWEET_SUCCESS = 'recommender/JUDGE_TWEET_SUCCESS';
+const JUDGE_TWEET_FAIL = 'recommender/JUDGE_TWEET_FAIL';
 
-const UPDATE_SCORE = 'recommender/UPDATE_SCORE';
-const UPDATE_SCORE_SUCCESS = 'recommender/UPDATE_SCORE_SUCCESS';
-const UPDATE_SCORE_FAIL = 'recommender/UPDATE_SCORE_FAIL';
+const JUDGE_TWEET_EXTERNAL = 'recommender/JUDGE_TWEET_EXTERNAL';
+const JUDGE_TWEET_EXTERNAL_SUCCESS = 'recommender/JUDGE_TWEET_EXTERNAL_SUCCESS';
+const JUDGE_TWEET_EXTERNAL_FAIL = 'recommender/JUDGE_TWEET_EXTERNAL_FAIL';
 
 const GET_TRAINING_TWEETS = 'recommender/GET_TRAINING_TWEETS';
 const GET_TRAINING_TWEETS_SUCCESS = 'recommender/GET_TRAINING_TWEETS_SUCCESS';
 const GET_TRAINING_TWEETS_FAIL = 'recommender/GET_TRAINING_TWEETS_FAIL';
 
+const GET_RECOMMENDED_TWEETS = 'recommender/GET_RECOMMENDED_TWEETS';
+const GET_RECOMMENDED_TWEETS_SUCCESS = 'recommender/GET_RECOMMENDED_TWEETS_SUCCESS';
+const GET_RECOMMENDED_TWEETS_FAIL = 'recommender/GET_RECOMMENDED_TWEETS_FAIL';
+
+const GET_RECOMMENDED_TWEETS_RECENT = 'recommender/GET_RECOMMENDED_TWEETS_RECENT';
+const GET_RECOMMENDED_TWEETS_RECENT_SUCCESS = 'recommender/GET_RECOMMENDED_TWEETS_RECENT_SUCCESS';
+const GET_RECOMMENDED_TWEETS_RECENT_FAIL = 'recommender/GET_RECOMMENDED_TWEETS_RECENT_FAIL';
+
 const initialState = {
+    tweets: [],
     recommendations: {
-        scores: []
-    },
-    tweets: [{text: '', retweetCount: 0, favoriteCount: 0}]
+        recent: [],
+        popular: [],
+        trends: []
+    }
 };
 
 // reducer
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case GET_SCORES:
-            return state;
-        case GET_SCORES_SUCCESS:
+        case JUDGE_TWEET:
             return {
                 ...state,
-                recommendations: {
-                    ...state.recommendations,
-                    scores: action.result.data
-                }
-            };
-        case UPDATE_SCORE:
-            return state;
-        case UPDATE_SCORE_SUCCESS:
-            return {
-                ...state,
-                recommendations: {
-                    ...state.recommendations,
-                    scores: action.result.data
-                }
+                tweets: state.tweets.slice(1)
             };
         case GET_TRAINING_TWEETS:
             return state;
         case GET_TRAINING_TWEETS_SUCCESS:
             return {
                 ...state,
-                tweets: action.result.data.length > 1 ? action.result.data
-                    : [state.tweets[1], ...action.result.data]
+                tweets: state.tweets.concat(action.result.data)
+            };
+        case GET_RECOMMENDED_TWEETS_SUCCESS:
+            return {
+                ...state,
+                recommendations: {
+                    ...state.recommendations,
+                    popular: action.result.data
+                }
+            };
+        case GET_RECOMMENDED_TWEETS_RECENT_SUCCESS:
+            return {
+                ...state,
+                recommendations: {
+                    ...state.recommendations,
+                    recent: action.result.data
+                }
             };
         default:
             return state;
     }
 }
 
-export function getScores() {
+export function judgeTweet(tweet, x, y) {
     return {
-        types: [GET_SCORES, GET_SCORES_SUCCESS, GET_SCORES_FAIL],
-        promise: client => client.get('/api/recommender/scores'),
+        types: [JUDGE_TWEET, JUDGE_TWEET_SUCCESS, JUDGE_TWEET_FAIL],
+        promise: client => client.put('/api/recommender/judgement', {
+            tweet: tweet['text'],
+            judgement: x,
+            sentiment: y
+        }),
         afterSuccess: (dispatch, getState, response) => {
+            if (getState().recommender.tweets.length < 5) {
+                dispatch(getTrainingTweet());
+            }
         },
         afterFailure: (dispatch, getState, error) => {
         }
     };
 }
 
-export function updateScore(score, i) {
+export function judgeTweetExternal(tweet, x) {
     return {
-        types: [UPDATE_SCORE, UPDATE_SCORE_SUCCESS, UPDATE_SCORE_FAIL],
-        promise: client => client.put('/api/recommender/scores', {
-            ...score,
-            score: i
+        types: [JUDGE_TWEET_EXTERNAL, JUDGE_TWEET_EXTERNAL_SUCCESS, JUDGE_TWEET_EXTERNAL_FAIL],
+        promise: client => client.put('/api/recommender/judgement', {
+            tweet: tweet['text'],
+            judgement: x,
+            sentiment: tweet['sentiment']
         }),
         afterSuccess: (dispatch, getState, response) => {
         },
@@ -83,6 +101,21 @@ export function getTrainingTweet() {
     return {
         types: [GET_TRAINING_TWEETS, GET_TRAINING_TWEETS_SUCCESS, GET_TRAINING_TWEETS_FAIL],
         promise: client => client.get('/api/recommender/training_tweet'),
+        afterSuccess: (dispatch, getState, response) => {
+        },
+        afterFailure: (dispatch, getState, error) => {
+        }
+    };
+}
+
+export function getRecommendedTweets(recent) {
+    return {
+        types: recent ? [GET_RECOMMENDED_TWEETS_RECENT, GET_RECOMMENDED_TWEETS_RECENT_SUCCESS, GET_RECOMMENDED_TWEETS_RECENT_FAIL] : [GET_RECOMMENDED_TWEETS, GET_RECOMMENDED_TWEETS_SUCCESS, GET_RECOMMENDED_TWEETS_FAIL],
+        promise: client => client.get('/api/recommender/recommendations', {
+            params: {
+                recent: recent
+            }
+        }),
         afterSuccess: (dispatch, getState, response) => {
         },
         afterFailure: (dispatch, getState, error) => {

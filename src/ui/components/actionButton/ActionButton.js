@@ -11,7 +11,7 @@ class ActionButton extends Component {
 	}
 
 	render() {
-		let {colour, icon, invertIcon, onClick} = this.props;
+		let {colour, icon, invertIcon, onClick, disabled, tiny} = this.props;
 
 		let style = {
 			border: "3px solid " + colour,
@@ -20,12 +20,12 @@ class ActionButton extends Component {
 		};
 
 		return (
-			<div className={"action-button" + (this.state.hover ? " hover" : "")}
-				 onClick={onClick}
+			<div className={"action-button" + (tiny ? " tiny" : "") + (this.state.hover ? " hover" : "") + (disabled ? " disabled" : "")}
+				 onClick={disabled ? () => {} : onClick}
 				 onMouseEnter={() => this.setState({...this.state, hover: true})}
 				 onMouseLeave={() => this.setState({...this.state, hover: false})}
 				 style={style}>
-				<i className={"fa " + icon + (this.state.hover && invertIcon ? " invert" : "")}/>
+				<i className={"fas " + icon + (this.state.hover && invertIcon ? " invert" : "")}/>
 			</div>
 		);
 	}
@@ -34,14 +34,19 @@ class ActionButton extends Component {
 ActionButton.defaultProps = {
 	colour: '#fff',
 	icon: "fa-plus",
-	invertIcon: false
+	invertIcon: false,
+	onClick: () => {},
+	disabled: false,
+	tiny: false
 };
 
 ActionButton.propTypes = {
 	colour: PropTypes.string,
 	icon: PropTypes.string,
 	invertIcon: PropTypes.bool,
-	onClick: PropTypes.func
+	onClick: PropTypes.func,
+	disabled: PropTypes.bool,
+	tiny: PropTypes.bool
 };
 
 export default ActionButton;

@@ -1,0 +1,13 @@
+@import "../vars";
+
+.recommender {
+  background-color: $DARK_WHITE;
+  border-radius: 15px;
+  margin: 25px;
+
+  .popular, .recent {
+
+    padding: 10px;
+    color: $SPACE_GRAY;
+  }
+}
